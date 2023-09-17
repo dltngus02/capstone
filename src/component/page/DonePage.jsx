@@ -1,5 +1,8 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
+import { useNavigation } from "../Router/Router";
 const DonePage = () => {
+  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
+    useNavigation();
   return (
     <>
       <header>
@@ -10,6 +13,7 @@ const DonePage = () => {
         </div>
       </header>
       <div>결제가 완료되었습니다! 안녕히가세요</div>
+      <button onClick={onClickMain}>처음으로</button>
     </>
   );
 };

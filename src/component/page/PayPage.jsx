@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useCallback, useState } from "react";
 
 import { useNavigation } from "../Router/Router";
 const PayPage = () => {
-  const { onClickStart, onClickOwner, onClickPay, onClickDone } =
+  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
   return (
     <>

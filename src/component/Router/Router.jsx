@@ -19,11 +19,15 @@ export const useNavigation = () => {
   const onClickDone = () => {
     navigate("/done");
   };
+  const onClickMain = () => {
+    navigate("/");
+  };
 
   return {
     onClickStart,
     onClickOwner,
     onClickPay,
     onClickDone,
+    onClickMain,
   };
 };

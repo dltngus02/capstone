@@ -1,8 +1,10 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
 import { useNavigation } from "../Router/Router";
+import Item from "./item/Item";
 const MainPage = () => {
-  const { onClickStart, onClickOwner, onClickPay, onClickDone } =
+  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
+
   return (
     <>
       <header>
@@ -18,17 +20,7 @@ const MainPage = () => {
         <div>수량</div>
         <div>가격</div>
       </div>
-      <div>
-        <button>전체취소</button>
-        <button onClick={onClickOwner}>관리자 호출</button>
-      </div>
-      <div>
-        <div>
-          <div>수량 개</div>
-          <div>총 금액 원</div>
-        </div>
-        <button onClick={onClickPay}>결제하기</button>
-      </div>
+      <Item></Item>
     </>
   );
 };
