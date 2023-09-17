@@ -1,5 +1,8 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
+import { useNavigation } from "../Router/Router";
 const MainPage = () => {
+  const { onClickStart, onClickOwner, onClickPay, onClickDone } =
+    useNavigation();
   return (
     <>
       <header>
@@ -17,14 +20,14 @@ const MainPage = () => {
       </div>
       <div>
         <button>전체취소</button>
-        <button>관리자 호출</button>
+        <button onClick={onClickOwner}>관리자 호출</button>
       </div>
       <div>
         <div>
           <div>수량 개</div>
           <div>총 금액 원</div>
         </div>
-        <button>결제하기</button>
+        <button onClick={onClickPay}>결제하기</button>
       </div>
     </>
   );

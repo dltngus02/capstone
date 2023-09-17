@@ -1,5 +1,9 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
+
+import { useNavigation } from "../Router/Router";
 const PayPage = () => {
+  const { onClickStart, onClickOwner, onClickPay, onClickDone } =
+    useNavigation();
   return (
     <>
       <header>
@@ -13,10 +17,10 @@ const PayPage = () => {
       <div>결제수단을 선택해주세요</div>
       <div>
         <div>
-          <button>현금</button>
+          <button onClick={onClickDone}>현금</button>
         </div>
         <div>
-          <button>카드</button>
+          <button onClick={onClickDone}>카드</button>
         </div>
       </div>
     </>
