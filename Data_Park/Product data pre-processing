@@ -1,0 +1,11 @@
+# 사용 라이브러리 : zipfile, xml.etree.ElementTree as ET, pandas, mysql.connector, sqlalchemy's import create_engine, PIL's import Image
+# base64, io's import BytesIO, io, re, random, mysql.connector's IntegrityError
+
+# develop environment : Aanaconda's Jupyter notebook python 3.10.11
+
+# 사용 API : Vertual AI's Jupyter Notebook, GCP, Apache Beam, Cloud Storage, Big Query, VM Instance, Data Flow
+
+
+# 코드 이용시 주의사항 : Aanaconda's Jupyter NoteBook으로 작업을 하여서, 파일 다운로드 path나 API's Key 경로는 local에서 진행시 각 체제의 맞게 변경 바람!!
+========================================================================================================================================================================
+========================================================================================================================================================================
