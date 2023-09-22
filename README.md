@@ -1,6 +1,9 @@
 # Product Recognition Automation Counter 🛒
+<br>
+
 ## 프로젝트 소개 🖥
  무인 계산대를 사용자 친화적으로 만들기 위한 프로젝트, Product Recognition Automation Counter 입니다. 인공지능 기술과 무인 계산대를 접목시켜 누구나 쉽고 빠르게 무인 계산대를 활용할 수 있게 합니다.
+<br>
 <br>
 
 ## 개발기간 ⏲
