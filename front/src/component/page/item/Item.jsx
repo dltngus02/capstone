@@ -1,17 +1,24 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
 import { useNavigation } from "../../Router/Router";
 import ItemCount from "./ItemCount";
+import image1 from "./1.jpg";
+import image2 from "./2.jpg";
+
+import minus from "./minus.png";
+import "./css/Item.css";
 const initalState = {
   idx: 3,
   mockData: [
     {
       id: 1,
+      img: image1,
       name: "농심 새우깡 500g",
       amount: 1,
       price: 1500,
     },
     {
       id: 2,
+      img: image2,
       name: "카레여왕 500g",
       amount: 2,
       price: 3000,
@@ -54,35 +61,48 @@ const Item = () => {
   const [state, dispatch] = useReducer(reducer, initalState);
 
   return (
-    <>
-      <div>
+    <div className="itemBack">
+      <div className="itemMap">
         {state.mockData.map((item) => (
-          <div key={item.id}>
-            <p>상품명: {item.name}</p>
-            <div>
-              <button
-                onClick={() => dispatch({ type: "INCREASE", data: item.id })}
-              >
-                +
-              </button>
-              <p>수량: {item.amount}</p>
-              <button
-                onClick={() => dispatch({ type: "DECREASE", data: item.id })}
-              >
-                -
-              </button>
+          <div className="itemflex" key={item.id}>
+            <p className="itemId">{item.id}</p>
+            <div className="container">
+              <img src={item.img} />
             </div>
-            <p>가격: {item.price}원</p>
+            <div className="itemNameContainer">
+              <p className="itemName">{item.name}</p>
+            </div>
+            <div className="itemcounter">
+              <button
+                className="button_plus"
+                onClick={() => dispatch({ type: "INCREASE", data: item.id })}
+              ></button>
+              <p className="itemAmount">{item.amount}</p>
+              <button
+                className="button_minus"
+                onClick={() => dispatch({ type: "DECREASE", data: item.id })}
+              ></button>
+            </div>
+            <p className="itemPrice"> {item.price}원</p>
           </div>
         ))}
       </div>
-      <div>
-        <button onClick={() => dispatch({ type: "CLEAR" })}>전체취소</button>
-        <button onClick={onClickOwner}>관리자 호출</button>
+
+      <div className="buttonContainer">
+        <button
+          className="buttonClear"
+          onClick={() => dispatch({ type: "CLEAR" })}
+        >
+          전체취소
+        </button>
+        <button className="buttonCall" onClick={onClickOwner}>
+          관리자 호출
+        </button>
       </div>
 
       <ItemCount mockData={state.mockData} />
-    </>
+    </div>
   );
 };
+
 export default Item;

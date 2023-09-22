@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
 import { useNavigation } from "../../Router/Router";
+import "./css/ItemCounter.css";
 const ItemCount = ({ mockData }) => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
@@ -11,12 +12,21 @@ const ItemCount = ({ mockData }) => {
   );
   return (
     <>
-      <div>
-        <div>
-          <div>수량 {sumAmount}개</div>
-          <div>총 금액 {sumPrice}원</div>
+      <hr />
+      <div className="counterBack">
+        <div className="counterButton">
+          <div className="numContainer">
+            <p className="allAmount">수량</p>
+            <p className="sumAmount">{sumAmount}개</p>
+          </div>
+          <div className="priceContainer">
+            <p className="allPrice"> 총 금액</p>
+            <p className="sumPrice">{sumPrice}원</p>
+            <button className="payButton" onClick={onClickPay}>
+              결제하기
+            </button>
+          </div>
         </div>
-        <button onClick={onClickPay}>결제하기</button>
       </div>
     </>
   );
