@@ -6,8 +6,11 @@
 # 사용 API : Vertual AI's Jupyter Notebook, GCP, Apache Beam, Cloud Storage, Big Query, VM Instance, Data Flow
 
 # 코드 이용시 주의사항 : Aanaconda's Jupyter NoteBook으로 작업을 하여서, 파일 다운로드 path나 API's Key 경로는 local에서 진행시 각 체제의 맞게 변경 바람!!
+
+# 사용시 입력해야하는 정보는 ★ 주석 처리 하였으니 꼭 필독하기 바람!!
 ========================================================================================================================================================================
 ========================================================================================================================================================================
+
 
 prices = []
 # 100개의 가격을 랜덤하게 생성하여 리스트에 추가
@@ -16,8 +19,7 @@ for _ in range(100):
     price = price // 100 * 100  # 100원 단위로 만들기
     prices.append(price)
 
-
-# 각 서버의 MYSQL정보 기재 바람
+# mySQL config정보 입력 ★
 db_config = {
     "host": "",
     "user": "",
@@ -26,11 +28,15 @@ db_config = {
     'connection_timeout': 999999999 # SQL 연결 시간 최대 설정
 }
 
+
 img_path_list = []
 temp_list = []
 
-download_path = "C:/Users/User/capstone_project/이미지/train/images"  # 원하는 경로로 변경
-basic_file = 'C:/Users/User/Desktop/2학기/캡스톤 과제/cap_project/Store_Item_Datasets.zip'
+# zip에서 사진 다운 경로를 지정해야함, 이미지 저장할 디렉토리 하나 만들고 지정하길 바람 ★
+download_path = "{download_path}"  
+
+# AI ZIP 파일 데이터 경로 지정해야함 ★
+basic_file = '{PATH}'
 
 zip_file_path = basic_file
 # 압축 파일 열기
@@ -91,8 +97,8 @@ for thing in temp_list:
     class_num = temp[-1].strip()
     things_dict[int(class_num)] = name
 
+
 img_data = []
-# 데이터 리스트 2를 순회하면서
 
 for num in thing_num:
     for img in folder_image_list:
@@ -108,3 +114,47 @@ data = {
 df = pd.DataFrame(data)
 
 
+# MySQL 연결 생성
+conn = mysql.connector.connect(**db_config)
+
+# db에 만들 table 이름 설정해야함 ★
+tbl_name = '{table name}'
+
+# 커서 생성
+cursor = conn.cursor()
+
+# 데이터베이스 생성 (이미 존재하는 경우 무시)
+create_database_query = f"CREATE DATABASE IF NOT EXISTS {db_config['database']}"
+cursor.execute(create_database_query)
+
+# 데이터베이스 선택
+conn.database = db_config["database"]
+
+# 테이블 생성 (물건)
+create_table_query = """
+CREATE TABLE IF NOT EXISTS {} (
+    id int PRIMARY KEY,
+    price int,
+    name VARCHAR(255),
+    image VARCHAR(255),
+    num int
+)
+""".format(tbl_name)
+cursor.execute(create_table_query)
+
+insert_query = "INSERT INTO {name} (id, price, name, image, num) VALUES (%s, %s, %s, %s, %s)".format(name=tbl_name)
+
+for i in range(df.shape[0]):
+     try:
+         # 데이터프레임을 튜플의 리스트로 변환
+        data_to_insert = [(row['id'], row['price'], row['name'], row['img_path'], row['num']) for index,row in df.iterrows()]
+        cursor.executemany(insert_query, data_to_insert)
+     except IntegrityError:
+        print("이미 있는 데이터 입니다.")
+        break
+
+# 변경사항 저장 및 연결 닫기
+conn.commit()
+conn.close()
+
+print("데이터베이스와 테이블이 생성되고 데이터가 입력되었습니다.")
