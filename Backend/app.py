@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_b
 db = SQLAlchemy(app)
 
 class AutoBill(db.Model):
-    __tablename__ = '물건20'
+    __tablename__ = '{table name}' # ★
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
