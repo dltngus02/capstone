@@ -24,7 +24,7 @@ class AutoBill(db.Model):
 def get_all_thing():
     return AutoBill.query.all()
 
-# 이 함수에서 AI에서 id 값을 받아와서 쿼리값을 출력하는 로직 구현
+# AI 모델에서 물건을 인식하고 id 변수에다가 id값을 받아오는 로직을 구현해 주세요
 #def get_info_from_AI():
 
 
