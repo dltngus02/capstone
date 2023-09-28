@@ -1,5 +1,7 @@
 ########### 혹시 best.pt 파일이 다른 위치에 있다면 절대경로로 best.pt파일 위치 수정할 것 ###########
 #####################    동일폴더에 best.pt가 있다면 그대로 사용    #######################
+# torch 2.0.1 ---> pip install torch==2.0.1
+# cv2 ---> pip install opencv-python
 import torch
 import cv2 
 
@@ -50,3 +52,8 @@ def detect_objects(frame_difference=40, confidence_threshold=0.75):
     cap.release()
     cv2.destroyAllWindows()
 
+
+
+
+for new_detected_class_ids in detect_objects():
+    print("New Detected Class IDs:", new_detected_class_ids)
