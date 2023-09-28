@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-time Products</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js" integrity="sha512-pqFRijC4ip+6YgT7zPcMSh/5b1yhpISLmTJMXKRrBOSnISw16arzwQFivyVB0eX/qhhGowZbGKLJlBvKmNkgIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <h1>Real-time Products</h1>
+
+  <ul id="products"></ul>
+
+  <script type="text/javascript">
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+      socket.on('connect', function() {
+          console.log("Connected");
+      });
+
+      socket.on('new_product', function(product) {
+          var li = document.createElement("li");
+          li.textContent = `id: ${product.id}, name: ${product.name}, price: ${product.price}, image: ${product.image}, num: ${product.num}`;
+          document.getElementById("products").appendChild(li);
+      });
+  </script>
+</body>
+</html>
