@@ -7,8 +7,8 @@ import cv2
 
 ##### frame_difference=40으로 설정해서 동일 객체에 대해서 중복 추가 X #####
 ##### confidence_threshold로 정확도 낮은 객체는 추가 X #####
-def detect_objects(frame_difference=40, confidence_threshold=0.75):
-    model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
+def detect_objects(frame_difference=40, confidence_threshold=0.45):
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/User/Desktop/vscode/capstone/Yolov5/best.pt')
     # 웹캠을 활용해 인식할 때
     cap = cv2.VideoCapture(0)
     
@@ -51,9 +51,3 @@ def detect_objects(frame_difference=40, confidence_threshold=0.75):
 
     cap.release()
     cv2.destroyAllWindows()
-
-
-
-
-for new_detected_class_ids in detect_objects():
-    print("New Detected Class IDs:", new_detected_class_ids)

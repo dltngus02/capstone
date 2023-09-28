@@ -5,11 +5,11 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 # MySQL 데이터베이스 설정
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{password}@localhost/{database}' # ★
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill'
 db = SQLAlchemy(app)
 
 class AutoBill(db.Model):
-    __tablename__ = '{table name}' # ★
+    __tablename__ = '물건20' # ★
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
@@ -40,3 +40,4 @@ def index():
 
 if __name__ == "__main__":
     app.run()
+ 
