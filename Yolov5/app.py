@@ -9,7 +9,7 @@ app = Flask(__name__)
     # app.config['SECRET_KEY'] = 'your_secret_key'  # 비밀 키 설정
 
 # MySQL 데이터베이스 설정
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{password}@localhost/{database}'
 db = SQLAlchemy(app)
 socketio = SocketIO(app)
 
@@ -17,7 +17,7 @@ socketio = SocketIO(app)
 
 
 class AutoBill(db.Model):
-    __tablename__ = '물건20'
+    __tablename__ = '{table_name}'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
