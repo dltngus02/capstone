@@ -14,8 +14,6 @@ db = SQLAlchemy(app)
 socketio = SocketIO(app)
 
 
-
-
 class AutoBill(db.Model):
     __tablename__ = '{table_name}'
     id = db.Column(db.Integer, primary_key=True)
@@ -37,6 +35,10 @@ def get_thing_by_id(id):
 def index():
     return render_template('index.html')
 
+
+# /get_products의 주소에 접근해야 웹캠 함수가 작동 됨, 실시간 데이터는 루트(/)라우터에 표시되기 때문에
+# get_products주소에 들어간후 새창으로 다시 /에 돌아온 후에 물건을 인식하면 작동이 잘 될꺼임
+# index.html에서 socket.on 부분이 데이터를 받는 곳이기 때문에 이 부분을 이쁘게 만들어 주기 바람
 @app.route('/get_products')
 def get_products():
     product_list = []
