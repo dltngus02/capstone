@@ -7,15 +7,16 @@ from flask import request
 
 app = Flask(__name__)
     # app.config['SECRET_KEY'] = 'your_secret_key'  # 비밀 키 설정
+basic_path = "./static/"
 
 # MySQL 데이터베이스 설정
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{password}@localhost/{database}'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill'
 db = SQLAlchemy(app)
 socketio = SocketIO(app)
 
 
 class AutoBill(db.Model):
-    __tablename__ = '{table_name}'
+    __tablename__ = '물건20'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
@@ -33,7 +34,7 @@ def get_thing_by_id(id):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html2')
 
 
 # /get_products의 주소에 접근해야 웹캠 함수가 작동 됨, 실시간 데이터는 루트(/)라우터에 표시되기 때문에
@@ -50,12 +51,16 @@ def get_products():
                     "id": product.id,
                     "name": product.name,
                     "price": product.price,
-                    "image": product.image,
+                    "image": basic_path + product.image.split('/')[-1],
                     "num": product.num
                 }
                 product_list.append(product_data)
                 socketio.emit('update_product', product_data)
     return jsonify(item=product_list)
+
+@app.route('/결재')
+def index2():
+    return render_template('index.html')
 
 if __name__ == "__main__":
 
