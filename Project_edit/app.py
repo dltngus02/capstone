@@ -16,7 +16,7 @@ socketio = SocketIO(app)
 
 
 class AutoBill(db.Model):
-    __tablename__ = '물건21'
+    __tablename__ = {소비자용 테이블 이름 삽입}
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))

@@ -32,10 +32,10 @@ for _ in range(100):
 
 # mySQL config정보 입력 ★
 db_config = {
-    "host": "127.0.0.1",
-    "user": "root",
-    "password": "gusdn0228",
-    "database": "auto_bill",
+    "host": ,
+    "user": ,
+    "password": ,
+    "database": ,
     'connection_timeout': 999999999 # SQL 연결 시간 최대 설정
 }
 
@@ -45,10 +45,10 @@ img_path_list = []
 temp_list = []
 
 # zip에서 사진 다운 경로를 지정해야함, 이미지 저장할 디렉토리 하나 만들고 지정하길 바람 ★
-download_path = "C:/Users/User/Desktop/vscode/capstone/Project_edit/static/img"  
+download_path = {사진 다운 받을 경로 보통 static img에 받음} 
 
 # AI ZIP 파일 데이터 경로 지정해야함 ★
-basic_file = 'C:/Users/User/Desktop/2학기/캡스톤 과제/cap_project/Store_Item_Datasets.zip'
+basic_file = {raw 데이터 경로 삽입}
 
 zip_file_path = basic_file
 # 압축 파일 열기
@@ -130,9 +130,9 @@ df = pd.DataFrame(data)
 conn = mysql.connector.connect(**db_config)
 
 # db에 만들 table 이름 설정해야함 ★
-tbl_name = '물건22'
+tbl_name = {소비자용 물건 테이블 이름 삽입}
 # db에 만들 주문table 이름 설정해야함 ★
-order_tbl_name = '주문_물건'
+order_tbl_name = {관리자용 재고 테이블 이름 삽입}
 
 
 # 커서 생성
@@ -171,14 +171,14 @@ for i in range(df.shape[0]):
 
 # 테이블 생성 (물건)
 create_table_query = """
-CREATE TABLE IF NOT EXISTS {} (
+CREATE TABLE IF NOT EXISTS {name} (
     id int not null,
     quantity int,
     order_day int,
     order_price int,
-    foreign key (id) references 물건21(id)
+    foreign key (id) references {reference}(id)
 )
-""".format(tbl_name)
+""".format(name=order_tbl_name, reference=tbl_name)
 cursor.execute(create_table_query)
 
 insert_query = "INSERT INTO {name} (id, quantity) select id, 50 from {reference} where id not in (select id from {name})".format(name=order_tbl_name, reference=tbl_name)
