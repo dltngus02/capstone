@@ -58,6 +58,8 @@ def get_products():
                 socketio.emit('update_product', product_data)
     return jsonify(item=product_list)
 
+
+# 결제 라우터를 추가해서 get_prodicts를 실행하면 /결제 페이지에서 데이터를 나오게 추가함
 @app.route('/결재')
 def index2():
     return render_template('index.html')

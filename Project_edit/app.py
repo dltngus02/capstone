@@ -10,13 +10,13 @@ app = Flask(__name__)
 basic_path = "./static/"
 
 # MySQL 데이터베이스 설정
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:0000@localhost/capstone'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill'
 db = SQLAlchemy(app)
 socketio = SocketIO(app)
 
 
 class AutoBill(db.Model):
-    __tablename__ = 'capstone_database'
+    __tablename__ = '물건21'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
