@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from DB_models.model import db, AutoBill
+from DB_models.model import db, AutoBill, Admin
+
+
 
 
 admin_bp = Blueprint('admin',
@@ -11,13 +13,10 @@ admin_bp = Blueprint('admin',
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        admin_id = 'admin'  # 미리 설정해둔 ID
-        admin_pw = 'password'  # 미리 설정해둔 PW
-
-        if request.form['admin_id'] == admin_id and request.form['admin_pw'] == admin_pw:
+        admin = Admin.query.get(request.form['admin_id'])
+        if admin and admin.check_password(request.form['admin_pw']):
             session['logged_in'] = True
             return redirect(url_for('admin.inventory'))
-
         else:
             return 'Wrong ID or Password!'
     else:
