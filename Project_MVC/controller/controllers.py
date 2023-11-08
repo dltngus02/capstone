@@ -4,9 +4,10 @@ from flask_socketio import emit
 from DB_models.model import AutoBill, db, socketio
 from common.config import basic_path
 
-bp = Blueprint('shopping',
-                __name__,
-                url_prefix='/')
+
+from DB_models.model import AutoBill, db, socketio
+
+bp = Blueprint('shopping',__name__,url_prefix='/')
 
 @bp.route('/')
 def main():
