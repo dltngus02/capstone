@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from DB_models.model import db, AutoBill, Admin
 from flask_login import login_user,login_required,logout_user
 from forms import LoginForm
-
-
+import telepot
+from flask import jsonify
 
 admin_bp = Blueprint('admin',
                      __name__,
@@ -65,3 +65,12 @@ def logout():
     flash('로그아웃!')
     return redirect(url_for('shopping.main'))
 
+
+
+@admin_bp.route('/call')
+def call():
+    tocken = '6517401179:AAFzWjz8UMlmBvwae95yoPHc80Qx95KX0Hc'
+    me = '6565353003'
+    bot = telepot.Bot(tocken)
+    bot.sendMessage(me, '관리자 호출!')
+    return jsonify(message='관리자를 호출했습니다!')
