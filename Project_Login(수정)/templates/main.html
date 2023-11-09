@@ -12,9 +12,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <button onclick="location.href='/장바구니'">시작하기</button>
     <button onclick="location.href='/admin/login'">관리자</button>
+    <button onclick="callAdmin()">관리자 호출</button>
+
+    <script>
+    function callAdmin() {
+        $.ajax({
+            url: '/admin/call',
+            type: 'GET',
+            success: function(response) {
+                alert(response.message);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+    </script>
 </body>
 </html>
