@@ -1,54 +1,99 @@
 .itemBack {
-  margin-bottom: 100vh;
+  margin-bottom: 55vh;
   width: 99%;
   margin-left: 0.5%;
-  height: 70vh;
-  background-color: white;
+
+  background-color: rgb(255, 255, 255);
 }
 
 .container {
-  margin-left: 120px;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  position: relative;
+  width: 22.5%;
+  height: 5%;
+  margin-top: 10px;
+  
+
+
 }
 .container > img {
-  position: absolute;
-  width: 100%;
-  /* height: 100%; */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding-left: 35%;
+  width:25%;
+  height:25%;
+  object-fit:cover;
 }
 .itemMap {
+  width: 100%;
+  height: 48vh;
+
+  line-height: 70px;
+  font-size: 1.3rem;
+
 }
 .itemNameContainer {
-  width: 300px;
+  width: 22.5%;
+  height: 70px;
+  margin-left: 32.5%;
+  margin-top: 10px;
+  text-align: center;
+  font-size : 20px;
+  position: absolute;
+
+
 }
 .itemflex {
   display: flex;
-  margin-left: 40px;
 }
 .itemId {
-  margin-left: 20px;
-}
-.itemName {
-  margin-left: 170px;
+  margin-left: 0.5%;
+  width: 10%;
+  height: 70px;
+  margin-top: 10px;
+  padding-left: 10px;
+  text-align: center;
 }
 
+
+
 .itemPrice {
-  margin-left: 230px;
+  width: 22.5%;
+  height: 70px;
+  margin-left: 76.5%;
+  text-align: center;
+
+  margin-top: 10px;
+  position: absolute;
+
+
 }
 
 .itemcounter {
-  margin-left: 150px;
+  width: 22.5%;
+  height: 70px;
+  margin-left: 55%;
+  margin-top: 10px;
+
+  position: absolute;
   display: flex;
+
 }
 .itemAmount {
-  margin-left: 210px;
+  width: 34%;
+  height: 70px;
+  text-align: center;
+
 }
-.button_plus {
+.divplus{
+  width: 33%;
+  height: 70px; 
+  margin-bottom: 35%;
+
+}
+.divminus{
+  width: 33%;
+  height: 70px; 
+
+
+}
+.divplus > button {
   position: absolute;
   width: 35px;
   height: 35px;
@@ -56,10 +101,8 @@
   cursor: pointer;
   border: 2px solid black;
   border-radius: 50%;
-
-  /* Mittig */
-  margin-top: 10px;
-  right: 37%;
+  left: 33%;
+  top : 35px;
 }
 
 .button_plus:after {
@@ -105,8 +148,8 @@
   border: 2px solid black;
   border-radius: 50%;
   /* Mittig */
-  margin-top: 10px;
-  right: 27.5%; /* 오른쪽 위치를 조정하여 원하는 위치로 배치하세요 */
+  top : 35px;
+  right: 33%; /* 오른쪽 위치를 조정하여 원하는 위치로 배치하세요 */
 }
 
 .button_minus:before {
@@ -145,7 +188,8 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
-  border-radius: 5%;
+  border-radius: 5px;
+
 }
 .buttonCall {
   margin-left: 4%;
@@ -156,5 +200,5 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
-  border-radius: 5%;
+  border-radius: 5px;
 }

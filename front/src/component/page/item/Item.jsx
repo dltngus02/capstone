@@ -3,7 +3,7 @@ import { useNavigation } from "../../Router/Router";
 import ItemCount from "./ItemCount";
 import image1 from "./1.jpg";
 import image2 from "./2.jpg";
-
+import Axios from 'axios';
 import minus from "./minus.png";
 import "./css/Item.css";
 const initalState = {
@@ -59,13 +59,31 @@ const Item = () => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
   const [state, dispatch] = useReducer(reducer, initalState);
+  const [products, setProducts] = useState([])
+  Axios.defaults.baseURL = 'http://127.0.0.1:5000/'; // Flask 서버 주소로 변경하세요
 
+  useEffect(() => {
+    // Flask 서버로부터 JSON 데이터를 가져오는 함수
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get('/get_products'); // Flask 서버의 엔드포인트
+        setProducts(response.data.item);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // 컴포넌트가 마운트될 때 데이터 가져오기
+    fetchData();
+  }, []);
   return (
     <div className="itemBack">
       <div className="itemMap">
-        {state.mockData.map((item) => (
+        {products.map((item) => (
           <div className="itemflex" key={item.id}>
-            <p className="itemId">{item.id}</p>
+            <div className="itemId">
+              <p>{item.id}</p>
+            </div>
             <div className="container">
               <img src={item.img} />
             </div>
@@ -73,17 +91,21 @@ const Item = () => {
               <p className="itemName">{item.name}</p>
             </div>
             <div className="itemcounter">
-              <button
-                className="button_plus"
-                onClick={() => dispatch({ type: "INCREASE", data: item.id })}
-              ></button>
+            <div className="divplus">
+                <button
+                  className="button_plus"
+                  onClick={() => dispatch({ type: "INCREASE", data: item.id })}
+                ></button>
+              </div>
               <p className="itemAmount">{item.amount}</p>
-              <button
-                className="button_minus"
-                onClick={() => dispatch({ type: "DECREASE", data: item.id })}
-              ></button>
+              <div className="divminus">
+                <button
+                  className="button_minus"
+                  onClick={() => dispatch({ type: "DECREASE", data: item.id })}
+                ></button>
+              </div>
             </div>
-            <p className="itemPrice"> {item.price}원</p>
+            <div className="itemPrice"> <p>{item.price}원</p></div>
           </div>
         ))}
       </div>
@@ -100,7 +122,7 @@ const Item = () => {
         </button>
       </div>
 
-      <ItemCount mockData={state.mockData} />
+      <ItemCount mockData={products} />
     </div>
   );
 };

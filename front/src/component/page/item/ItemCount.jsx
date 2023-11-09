@@ -16,12 +16,16 @@ const ItemCount = ({ mockData }) => {
       <div className="counterBack">
         <div className="counterButton">
           <div className="numContainer">
+            <div className="numdiv">
             <p className="allAmount">수량</p>
             <p className="sumAmount">{sumAmount}개</p>
+            </div>
           </div>
           <div className="priceContainer">
-            <p className="allPrice"> 총 금액</p>
-            <p className="sumPrice">{sumPrice}원</p>
+              <div className="allsum">
+                <p className="allPrice"> 총 금액</p>
+                <p className="sumPrice">{sumPrice}원</p>
+              </div>
             <button className="payButton" onClick={onClickPay}>
               결제하기
             </button>
