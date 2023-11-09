@@ -1,12 +1,8 @@
 from flask import Blueprint, render_template, jsonify, request
-from detect import detect_objects
 from flask_socketio import emit
 from DB_models.model import AutoBill, db, socketio
 from common.config import basic_path
-
-
-from DB_models.model import AutoBill, db, socketio
-
+from detect import detect_objects
 bp = Blueprint('shopping',__name__,url_prefix='/')
 
 @bp.route('/')
@@ -36,7 +32,7 @@ def get_products():
                     "id": product.id,
                     "name": product.name,
                     "price": product.price,
-                    "image": basic_path + product.image.split('/')[-1],
+                    "image": "../static/img/" + product.image.split('/')[-1],
                     "num": product.num
                 }
                 product_list.append(product_data)
@@ -45,4 +41,3 @@ def get_products():
 
 def get_thing_by_id(id):
     return AutoBill.query.get(id)
-
