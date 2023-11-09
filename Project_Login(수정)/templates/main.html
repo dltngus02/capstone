@@ -1,0 +1,20 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <script type="text/javascript">
+        alert("{{messages[-1]}}");
+    </script>
+{% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <button onclick="location.href='/장바구니'">시작하기</button>
+    <button onclick="location.href='/admin/login'">관리자</button>
+</body>
+</html>

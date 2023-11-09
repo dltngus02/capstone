@@ -1,0 +1,36 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <script type="text/javascript">
+        alert("{{messages[-1]}}");
+    </script>
+{% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+    <h1>{{ current_user.email.split('@')[0] }}님의 Inventory Page</h1>
+
+    <form action="/admin/logout" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
+
+    <ul>
+    {% for item in items %}
+        <li>
+            <strong>ID:</strong> {{ item.id }}, 
+            <strong>Name:</strong> {{ item.name }}, 
+            <strong>Price:</strong> {{ item.price }}원, 
+            <!-- Base64 이미지를 화면에 표시
+            <strong>Image:</strong> <img src="data:image/jpeg;base64,{{ item.image }}" alt="Image">,  -->
+            <strong>Num:</strong> {{ item.num }}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
