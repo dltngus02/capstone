@@ -21,16 +21,15 @@
     </form>
 
     <ul>
-    {% for item in items %}
-        <li>
-            <strong>ID:</strong> {{ item.id }}, 
-            <strong>Name:</strong> {{ item.name }}, 
-            <strong>Price:</strong> {{ item.price }}원, 
-            <!-- Base64 이미지를 화면에 표시
-            <strong>Image:</strong> <img src="data:image/jpeg;base64,{{ item.image }}" alt="Image">,  -->
-            <strong>Num:</strong> {{ item.num }}
-        </li>
-    {% endfor %}
+        {% for item in items %}
+            <li>
+                <strong>ID:</strong> {{ item.id }}, 
+                <strong>Name:</strong> {{ item.name }}, 
+                <strong>Quantity:</strong> {{ item.quantity }},
+                <!-- <strong>Order Day:</strong> {{ item.order_day }},
+                <strong>Order Price:</strong> {{ item.order_price }}원,  -->
+             </li>
+        {% endfor %}
     </ul>
 </body>
 </html>
