@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from DB_models.model import db, AutoBill, Admin
+from DB_models.model import db, AutoBill, Admin, Quantity
 from flask_login import login_user,login_required,logout_user
 from forms import LoginForm
 import telepot
@@ -54,8 +54,9 @@ def login():
 @admin_bp.route('/inventory')
 @login_required
 def inventory():
-    items = AutoBill.query.all()  # AutoBill 모델의 모든 품목 데이터를 가져옴
+    items = Quantity.query.all()  # Quantity 모델의 모든 품목 데이터를 가져옴
     return render_template('admin_inventory.html', items=items)  # 품목 데이터를 템플릿에 전달
+
     
     
 @admin_bp.route('/logout', methods=['POST', 'GET'])

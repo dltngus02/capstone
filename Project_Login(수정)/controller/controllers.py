@@ -37,7 +37,7 @@ def get_products():
                     "id": product.id,
                     "name": product.name,
                     "price": product.price,
-                    "image": basic_path + product.image.split('/')[-1],
+                    "image": "../static/img/" + product.image.split('/')[-1],
                     "num": product.num
                 }
                 product_list.append(product_data)
