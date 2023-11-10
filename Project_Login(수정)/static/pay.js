@@ -1,7 +1,7 @@
 IMP.init("imp41444282");
 
 const button = document.querySelector("button");
-var quantity = Math.random * 1000;
+var quantity = Math.random() * 1000;
 
 const onClickPay = async () => {
     var HOTNODDLE = "NODDLE"+quantity;
