@@ -10,41 +10,23 @@ admin_bp = Blueprint('admin',
                      url_prefix='/admin')
 
 
-
-# @admin_bp.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         admin = Admin.query.get(request.form['admin_id'])
-#         if admin and admin.check_password(request.form['admin_pw']):
-#             session['logged_in'] = True
-#             return redirect(url_for('admin.inventory'))
-#         else:
-#             return 'Wrong ID or Password!'
-#     else:
-#         return render_template('admin_login.html')
-
-
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         admin = Admin.query.filter_by(email=form.email.data).first()
 
-        if admin is not None and admin.check_password(admin.password, form.password.data):
+        if admin is None:
+            form.email.errors.append('사용자 정보가 일치하지 않습니다.')
+        elif not admin.check_password(admin.password, form.password.data):
+            form.password.errors.append('사용자 정보가 일치하지 않습니다.')
+        else:
             login_user(admin)
             flash('로그인!')
 
             next = request.args.get('next')
-            # 만약 로그인이 필요한 페이지를 사용자가 방문하려고 한다면 next로 저장
-            # 로그인을 하지 않은 사용자가 welcome_user에 액세스하는 경우 Flask는 해당 페이지에 대한 요청을 
-            # next 페이지로 저장후 LoginForm으로 리디렉션
-
             if next == None or not next[0]=='/':
                 next = url_for('admin.inventory')
-                
-            # 만약 정상적으로 로그인한 상태였다면 사용자가 가려고 했던 next 페이지를 요청
-            # next 페이지에 아무것도 없을 떄(로그인한 상태니까 next에 쌓인 요청이 없음)
-            # inventory_user
 
             return redirect(next)
     return render_template('admin_login.html', form=form, errors=form.errors)
