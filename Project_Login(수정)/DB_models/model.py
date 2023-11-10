@@ -34,7 +34,23 @@ class AutoBill(db.Model):
 
 #     def check_password(self, password):
 #         return bcrypt.check_password_hash(self.password, password)
+
+
+class Quantity(db.Model):
+    __tablename__ = '주문_물건'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    quantity = db.Column(db.Integer)
+    order_day = db.Column(db.Integer)
+    order_price = db.Column(db.Integer)
     
+    def __init__(self, id, name, quantity, order_day, order_price):
+        self.id = id
+        self.name = name
+        self.quantity = quantity
+        self.order_day = order_day
+        self.order_price = order_price
+
     
     
 @login_manager.user_loader
