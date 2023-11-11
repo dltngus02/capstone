@@ -37,6 +37,7 @@ def get_products():
                     "id": product.id,
                     "name": product.name,
                     "price": product.price,
+                    "amount": 1,
                     "image": "../static/img/" + product.image.split('/')[-1],
                     "num": product.num
                 }
