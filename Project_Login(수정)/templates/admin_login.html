@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <form method="POST">
+        <!-- This hidden_tag is a CSRF security feature. -->
+        {{ form.hidden_tag() }}
+        {{ form.email.label }} {{ form.email() }}
+        {{ form.password.label }} {{ form.password() }}
+        {{ form.submit() }}
+        
+        {% if errors %}
+            <div id="error-message" class="error-message">
+                사용자 정보가 일치하지 않습니다!
+            </div>
+        {% endif %}
+    </form>
+
+    {% endblock %}
+    <script>
+        window.onload = function() {
+            var error_message = document.getElementById("error-message");
+            if (error_message) {
+                setTimeout(function() {
+                    error_message.style.display = "none";
+                }, 3000);
+            }
+        };
+    </script>
+
+    <button onclick="location.href='/'">뒤로가기</button>
+</body>
+</html>
+
