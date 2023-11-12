@@ -1,13 +1,13 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
-
+import {dispatch} from "./item/Item"
 import { useNavigation } from "../Router/Router";
 import "./css/PayPage.css"
+import Axios from 'axios';
 const PayPage = () => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
   return (
     <div className="wrapper1">
-      
           <header>
             <div className="Header1">
               <div className="goods1">1. 상품확인</div>
