@@ -3,8 +3,18 @@ import { useNavigation } from "../../Router/Router";
 import ItemCount from "./ItemCount";
 import image1 from "./1.jpg";
 import image2 from "./2.jpg";
+<<<<<<< HEAD
+import Axios from 'axios';
+=======
+<<<<<<< HEAD
+
+>>>>>>> origin/master
+import minus from "./minus.png";
+=======
 import Axios from 'axios';
 import minus from "./minus.png";
+import io from 'socket.io-client';
+>>>>>>> origin/master
 import "./css/Item.css";
 const initalState = {
   idx: 3,
@@ -24,14 +34,46 @@ const initalState = {
       price: 3000,
     },
   ],
+<<<<<<< HEAD
   products : [
 
   ]
+=======
+<<<<<<< HEAD
+=======
+  products : [
+
+  ]
+>>>>>>> origin/master
+>>>>>>> origin/master
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREASE":
+<<<<<<< HEAD
+      console.log(state.products)
+      const newIncreaseData = state.products.map((item) =>
+      
+        item.name === action.data ? { ...item, amount: item.amount + 1 } : item
+=======
+<<<<<<< HEAD
+      const newIncreaseData = state.mockData.map((item) =>
+        item.id === action.data ? { ...item, amount: item.amount + 1 } : item
+>>>>>>> origin/master
+      );
+      return {
+        ...state,
+        products: newIncreaseData,
+      };
+    case "DECREASE":
+<<<<<<< HEAD
+      const newDecreaseData = state.products.map((item) =>
+      item.name === action.data && item.amount > 0
+=======
+      const newDecreaseData = state.mockData.map((item) =>
+        item.id === action.data && item.amount > 0
+=======
       console.log(state.products)
       const newIncreaseData = state.products.map((item) =>
       
@@ -44,18 +86,37 @@ const reducer = (state, action) => {
     case "DECREASE":
       const newDecreaseData = state.products.map((item) =>
       item.name === action.data && item.amount > 0
+>>>>>>> origin/master
+>>>>>>> origin/master
           ? { ...item, amount: item.amount - 1 }
           : item
       );
       return {
         ...state,
+<<<<<<< HEAD
         products: newDecreaseData,
+=======
+<<<<<<< HEAD
+        mockData: newDecreaseData,
+=======
+        products: newDecreaseData,
+>>>>>>> origin/master
+>>>>>>> origin/master
       };
     case "CLEAR":
       return {
         ...state,
+<<<<<<< HEAD
         products: [],
       };
+=======
+<<<<<<< HEAD
+        mockData: [],
+      };
+=======
+        products: [],
+      };
+>>>>>>> origin/master
     case "SET_PRODUCTS":
         return {
           ...state,
@@ -67,6 +128,10 @@ const reducer = (state, action) => {
         console.log(item.image)
       );
       
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
     default:
       return state;
   }
@@ -76,6 +141,7 @@ const Item = () => {
     useNavigation();
   const [state, dispatch] = useReducer(reducer, initalState);
 
+<<<<<<< HEAD
   Axios.defaults.baseURL = 'http://127.0.0.1:5000/';
   const item_list = [];
   useEffect(() => {
@@ -133,6 +199,78 @@ const Item = () => {
 
 
 
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+  return (
+    <div className="itemBack">
+      <div className="itemMap">
+        {state.products.map((item,index) => (
+          <div className="itemflex" key={index}>
+            <div className="itemId">
+              <p>{index}</p>
+            </div>
+            <div className="container">
+<<<<<<< HEAD
+              <img src={item.image} />
+=======
+              <img src={item.img} />
+=======
+  const item_list = [];
+  const callAdmin = () => {
+    fetch('/admin/call', {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    const socket = io.connect('http://127.0.0.1:5000');
+      try {
+        console.log("실행중");
+        socket.on('update_product', (product) => {
+          // 수신된 데이터를 사용하여 원하는 작업 수행
+          console.log('Received product data:', product);
+          let breakpoint = false;
+          if (item_list.length === 0){
+            item_list.push([product.amount, product.name, product.price, product.image])
+          }
+          else{
+            for (let j = 0; j < item_list.length; j++) {
+              if (item_list[j][1] === product.name) {
+                item_list[j][0]++;
+                breakpoint = true;
+                break;
+              }
+            }
+            if (!breakpoint) {
+              item_list.push([product.amount, product.name, product.price, product.image])
+            }
+          }
+        const updatedProducts = item_list.map(([amount, name, price, image]) => ({
+          amount,
+          name,
+          price,
+          image,
+        }));
+        dispatch({ type: "SET_PRODUCTS", data: updatedProducts });
+
+      });
+      } catch (error) {
+        console.error('데이터를 가져오는 중 오류 발생:', error);
+      }
+    // 클린업 함수
+    return () => {
+      socket.disconnect(); // 컴포넌트가 언마운트될 때 소켓 연결 해제
+    };
+  }, []);
+
+
   return (
     <div className="itemBack">
       <div className="itemMap">
@@ -143,11 +281,40 @@ const Item = () => {
             </div>
             <div className="container">
               <img src={item.image} />
+>>>>>>> origin/master
+>>>>>>> origin/master
             </div>
             <div className="itemNameContainer">
               <p className="itemName">{item.name}</p>
             </div>
             <div className="itemcounter">
+<<<<<<< HEAD
+            <div className="divplus">
+                <button
+                  className="button_plus"
+                  onClick={() => dispatch({ type: "INCREASE", data: item.name })}
+                ></button>
+              </div>
+=======
+<<<<<<< HEAD
+              <button
+                className="button_plus"
+                onClick={() => dispatch({ type: "INCREASE", data: item.id })}
+              ></button>
+>>>>>>> origin/master
+              <p className="itemAmount">{item.amount}</p>
+              <div className="divminus">
+                <button
+                  className="button_minus"
+                  onClick={() => dispatch({ type: "DECREASE", data: item.name })}
+                ></button>
+              </div>
+            </div>
+<<<<<<< HEAD
+            <div className="itemPrice"> <p>{item.price}원</p></div>
+=======
+            <p className="itemPrice"> {item.price}원</p>
+=======
             <div className="divplus">
                 <button
                   className="button_plus"
@@ -163,6 +330,8 @@ const Item = () => {
               </div>
             </div>
             <div className="itemPrice"> <p>{item.price}원</p></div>
+>>>>>>> origin/master
+>>>>>>> origin/master
           </div>
         ))}
       </div>
@@ -174,13 +343,26 @@ const Item = () => {
         >
           전체취소
         </button>
+<<<<<<< HEAD
         <button className="buttonCall" onClick={onClickOwner}>
+=======
+        <button className="buttonCall" onClick={callAdmin}>
+>>>>>>> origin/master
           관리자 호출
         </button>
       </div>
 
+<<<<<<< HEAD
       <ItemCount mockData={state.products} allData={state.products}/>
       {console.log(state.products)}
+=======
+<<<<<<< HEAD
+      <ItemCount mockData={state.mockData} />
+=======
+      <ItemCount mockData={state.products} allData={state.products}/>
+      {console.log(state.products)}
+>>>>>>> origin/master
+>>>>>>> origin/master
     </div>
   );
 };

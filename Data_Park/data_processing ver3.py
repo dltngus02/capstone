@@ -34,8 +34,13 @@ for _ in range(100):
 db_config = {
     "host": "127.0.0.1",
     "user": "root",
+<<<<<<< HEAD
     "password": "gusdn0228",
     "database": "auto_bill",
+=======
+    "password": "0000",
+    "database": "capstone",
+>>>>>>> origin/master
     'connection_timeout': 999999999 # SQL 연결 시간 최대 설정
 }
 
@@ -45,10 +50,21 @@ img_path_list = []
 temp_list = []
 
 # zip에서 사진 다운 경로를 지정해야함, 이미지 저장할 디렉토리 하나 만들고 지정하길 바람 ★
+<<<<<<< HEAD
 download_path = "C:/Users/User/Desktop/vscode/capstone/Project_Login(수정)/static/img"  
+=======
+<<<<<<< HEAD
+download_path = "C:/Users/User/Desktop/vscode/capstone/Project_MVC/static/img"  
+>>>>>>> origin/master
 
 # AI ZIP 파일 데이터 경로 지정해야함 ★
 basic_file = 'C:/Users/User/Desktop/2학기/캡스톤 과제/cap_project/Store_Item_Datasets.zip'
+=======
+download_path = "C:/Users/user/Desktop/capstone/capstone-master/Project_Login(수정)/static/img"  
+
+# AI ZIP 파일 데이터 경로 지정해야함 ★
+basic_file = 'C:/Users/user/Desktop/Store_Item_Datasets.zip'
+>>>>>>> origin/master
 
 zip_file_path = basic_file
 # 압축 파일 열기
@@ -130,7 +146,11 @@ df = pd.DataFrame(data)
 conn = mysql.connector.connect(**db_config)
 
 # db에 만들 table 이름 설정해야함 ★
+<<<<<<< HEAD
 tbl_name = '물건22'
+=======
+tbl_name = 'capstone_database'
+>>>>>>> origin/master
 # db에 만들 주문table 이름 설정해야함 ★
 order_tbl_name = '주문_물건'
 
@@ -173,7 +193,14 @@ for i in range(df.shape[0]):
 create_table_query = """
 CREATE TABLE IF NOT EXISTS {name} (
     id int not null,
+<<<<<<< HEAD
     name VARCHAR(255),
+=======
+<<<<<<< HEAD
+=======
+    name VARCHAR(255),
+>>>>>>> origin/master
+>>>>>>> origin/master
     quantity int,
     order_day int,
     order_price int,
@@ -182,7 +209,15 @@ CREATE TABLE IF NOT EXISTS {name} (
 """.format(name=order_tbl_name, reference=tbl_name)
 cursor.execute(create_table_query)
 
+<<<<<<< HEAD
 insert_query = "INSERT INTO {name} (id, name, quantity) select id, name, 50 from {reference} where id not in (select id from {name})".format(name=order_tbl_name, reference=tbl_name)
+=======
+<<<<<<< HEAD
+insert_query = "INSERT INTO {name} (id, quantity) select id, 50 from {reference} where id not in (select id from {name})".format(name=order_tbl_name, reference=tbl_name)
+=======
+insert_query = "INSERT INTO {name} (id, name, quantity) select id, name, 50 from {reference} where id not in (select id from {name})".format(name=order_tbl_name, reference=tbl_name)
+>>>>>>> origin/master
+>>>>>>> origin/master
 cursor.execute(insert_query)
 
 # 변경사항 저장 및 연결 닫기

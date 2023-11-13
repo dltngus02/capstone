@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% with messages = get_flashed_messages() %}
 {% if messages %}
     <script type="text/javascript">
@@ -33,3 +34,40 @@
     </ul>
 </body>
 </html>
+=======
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <script type="text/javascript">
+        alert("{{messages[-1]}}");
+    </script>
+{% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+    <h1>{{ current_user.email.split('@')[0] }}님의 Inventory Page</h1>
+
+    <form action="/admin/logout" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
+
+    <ul>
+        {% for item in items %}
+            <li>
+                <strong>ID:</strong> {{ item.id }}, 
+                <strong>Name:</strong> {{ item.name }}, 
+                <strong>Quantity:</strong> {{ item.quantity }},
+                <!-- <strong>Order Day:</strong> {{ item.order_day }},
+                <strong>Order Price:</strong> {{ item.order_price }}원,  -->
+             </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+>>>>>>> origin/master

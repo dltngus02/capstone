@@ -1,4 +1,72 @@
 .counterBack {
+<<<<<<< HEAD
+  margin-top: 30px;
+  height: 17.8vh;
+  width : 99vw;
+  font-size: 40px;
+  
+=======
+<<<<<<< HEAD
+  margin-top: -15px;
+  margin-left: 60px;
+  height: 50px;
+>>>>>>> origin/master
+}
+
+.numContainer {
+  display: flex;
+  width: 97vw;
+  font-weight: bold;
+  text-align: left;
+}
+
+.numdiv{
+  display: flex;
+  width: 30.61%;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left : 2%;
+}
+
+.priceContainer {
+  margin-top: -2%;
+  margin-left : 2%;
+  display: flex;
+  width: 97vw;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.allAmount{
+  width: 40%;
+  text-align : left;
+}
+
+.allsum{
+  display: flex;
+  width: 30.61%;
+  font-size: 40px;
+}
+
+.sumAmount {
+ width: 60%;
+ text-align: right;
+
+}
+
+
+.allPrice {
+  width: 40%;
+  text-align: left;
+
+}
+.sumPrice {
+<<<<<<< HEAD
+  width: 60%;
+=======
+  width: 14%;
+  margin-left: -1.5%;
+=======
   margin-top: 30px;
   height: 17.8vh;
   width : 99vw;
@@ -55,6 +123,8 @@
 }
 .sumPrice {
   width: 60%;
+>>>>>>> origin/master
+>>>>>>> origin/master
   text-align: right;
   color: #d24232;
 }
@@ -62,11 +132,27 @@
 .payButton {
   border: none;
   cursor: pointer;
+<<<<<<< HEAD
   margin-left : 55%;
   margin-top: 35px;
   width: 295px;
   font-size: 40px;
   height: 38%;
+=======
+<<<<<<< HEAD
+  margin-left: 440px;
+  margin-top: 25px;
+  width: 25%;
+  font-size: 40px;
+  height: 70px;
+=======
+  margin-left : 55%;
+  margin-top: 35px;
+  width: 295px;
+  font-size: 40px;
+  height: 38%;
+>>>>>>> origin/master
+>>>>>>> origin/master
   color: white;
   background-color: #d24232;
   border-radius: 15px;
