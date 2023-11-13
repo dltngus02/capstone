@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -81,3 +82,88 @@
     <button onclick="location.href='/결제'">결제하기</button>
 </body>
 </html>
+=======
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Product Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Product List</h1>
+    <ul id="product-list"></ul>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to the server.');
+        });
+
+        socket.on('update_product', function(product) {
+            // 실시간 업데이트를 처리하는 JavaScript 코드 작성
+            var productList = document.getElementById('product-list');
+            var listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>ID:</strong> ${product.id}, 
+                <strong>Name:</strong> ${product.name}, 
+                <strong>Price:</strong> ${product.price}, 
+                <strong>Image:</strong> ${product.image}, 
+                <strong>Num:</strong> ${product.num}
+            `;
+            productList.appendChild(listItem);
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from the server.');
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Product Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h1>Product List</h1>
+    <ul id="product-list"></ul>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to the server.');
+            $.get('/get_products', function(data) {
+                console.log('Webcam started.');
+            });
+        });
+
+
+        
+        socket.on('update_product', function(product) {
+            var productList = document.getElementById('product-list');
+            var listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <img src=${product.image} width="100" height="100">,
+                <strong>ID:</strong> ${product.id}, 
+                <strong>Name:</strong> ${product.name}, 
+                <strong>Price:</strong> ${product.price}, 
+                <strong>Num:</strong> ${product.num}
+            `;
+            productList.appendChild(listItem);
+        });
+        socket.on('disconnect', function() {
+            console.log('Disconnected from the server.');
+        });
+    </script>
+
+    <button onclick="location.href='/결제'">결제하기</button>
+</body>
+</html>
+>>>>>>> origin/master

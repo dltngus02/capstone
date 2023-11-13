@@ -1,4 +1,5 @@
 .itemBack {
+<<<<<<< HEAD
   margin-bottom: 100vh;
   width: 99%;
   margin-left: 0.5%;
@@ -49,6 +50,103 @@
   margin-left: 210px;
 }
 .button_plus {
+=======
+  margin-bottom: 55vh;
+  width: 99%;
+  margin-left: 0.5%;
+
+  background-color: rgb(255, 255, 255);
+}
+
+.container {
+  width: 22.5%;
+  height: 5%;
+  margin-top: 10px;
+  
+
+
+}
+.container > img {
+  padding-left: 35%;
+  width:25%;
+  height:25%;
+  object-fit:cover;
+}
+.itemMap {
+  width: 100%;
+  height: 48vh;
+
+  line-height: 70px;
+  font-size: 1.3rem;
+
+}
+.itemNameContainer {
+  width: 22.5%;
+  height: 70px;
+  margin-left: 32.5%;
+  margin-top: 10px;
+  text-align: center;
+  font-size : 20px;
+  position: absolute;
+
+
+}
+.itemflex {
+  display: flex;
+}
+.itemId {
+  margin-left: 0.5%;
+  width: 10%;
+  height: 70px;
+  margin-top: 10px;
+  padding-left: 10px;
+  text-align: center;
+}
+
+
+
+.itemPrice {
+  width: 22.5%;
+  height: 70px;
+  margin-left: 76.5%;
+  text-align: center;
+
+  margin-top: 10px;
+  position: absolute;
+
+
+}
+
+.itemcounter {
+  width: 22.5%;
+  height: 70px;
+  margin-left: 55%;
+  margin-top: 10px;
+
+  position: absolute;
+  display: flex;
+
+}
+.itemAmount {
+  width: 34%;
+  height: 70px;
+  text-align: center;
+
+}
+.divplus{
+  width: 33%;
+  height: 70px; 
+  margin-bottom: 35%;
+
+}
+.divminus{
+  width: 33%;
+  height: 70px; 
+
+
+}
+.divplus > button {
+>>>>>>> origin/master
   position: absolute;
   width: 35px;
   height: 35px;
@@ -56,10 +154,15 @@
   cursor: pointer;
   border: 2px solid black;
   border-radius: 50%;
+<<<<<<< HEAD
 
   /* Mittig */
   margin-top: 10px;
   right: 37%;
+=======
+  left: 33%;
+  top : 35px;
+>>>>>>> origin/master
 }
 
 .button_plus:after {
@@ -105,8 +208,13 @@
   border: 2px solid black;
   border-radius: 50%;
   /* Mittig */
+<<<<<<< HEAD
   margin-top: 10px;
   right: 27.5%; /* 오른쪽 위치를 조정하여 원하는 위치로 배치하세요 */
+=======
+  top : 35px;
+  right: 33%; /* 오른쪽 위치를 조정하여 원하는 위치로 배치하세요 */
+>>>>>>> origin/master
 }
 
 .button_minus:before {
@@ -145,7 +253,12 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
+<<<<<<< HEAD
   border-radius: 5%;
+=======
+  border-radius: 5px;
+
+>>>>>>> origin/master
 }
 .buttonCall {
   margin-left: 4%;
@@ -156,5 +269,9 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
+<<<<<<< HEAD
   border-radius: 5%;
+=======
+  border-radius: 5px;
+>>>>>>> origin/master
 }

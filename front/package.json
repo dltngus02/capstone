@@ -2,14 +2,29 @@
   "name": "capstone",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
+=======
+  "homepage": "/static/react",
+  "proxy": "http://127.0.0.1:5000",
+>>>>>>> origin/master
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+=======
+    "axios": "^1.6.0",
+    "global": "^4.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "^5.0.1",
+    "socket.io-client": "^4.7.2",
+>>>>>>> origin/master
     "web-vitals": "^2.1.4"
   },
   "scripts": {
