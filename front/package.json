@@ -2,6 +2,10 @@
   "name": "capstone",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
+=======
+  "homepage": "/static/react",
+>>>>>>> 0393f1e1c6211c5675938da280ef349c4d6e30c2
   "proxy": "http://127.0.0.1:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
