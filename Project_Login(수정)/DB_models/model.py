@@ -9,7 +9,7 @@ import binascii
 
 
 class AutoBill(db.Model):
-    __tablename__ = 'capstone_database'
+    __tablename__ = '물건22'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))

@@ -34,8 +34,8 @@ for _ in range(100):
 db_config = {
     "host": "127.0.0.1",
     "user": "root",
-    "password": "0000",
-    "database": "capstone",
+    "password": "gusdn0228",
+    "database": "auto_bill",
     'connection_timeout': 999999999 # SQL 연결 시간 최대 설정
 }
 
@@ -45,10 +45,10 @@ img_path_list = []
 temp_list = []
 
 # zip에서 사진 다운 경로를 지정해야함, 이미지 저장할 디렉토리 하나 만들고 지정하길 바람 ★
-download_path = "C:/Users/user/Desktop/capstone/capstone-master/Project_Login(수정)/static/img"  
+download_path = "C:/Users/User/Desktop/vscode/capstone/Project_Login(수정)/static/img"  
 
 # AI ZIP 파일 데이터 경로 지정해야함 ★
-basic_file = 'C:/Users/user/Desktop/Store_Item_Datasets.zip'
+basic_file = 'C:/Users/User/Desktop/2학기/캡스톤 과제/cap_project/Store_Item_Datasets.zip'
 
 zip_file_path = basic_file
 # 압축 파일 열기
@@ -130,7 +130,7 @@ df = pd.DataFrame(data)
 conn = mysql.connector.connect(**db_config)
 
 # db에 만들 table 이름 설정해야함 ★
-tbl_name = 'capstone_database'
+tbl_name = '물건22'
 # db에 만들 주문table 이름 설정해야함 ★
 order_tbl_name = '주문_물건'
 

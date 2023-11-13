@@ -6,7 +6,7 @@ from common import config
 
 app = Flask(__name__)
 app.config.from_object(config)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'gusdn@0228'
 
 db = SQLAlchemy(app)
 socketio = SocketIO(app)
