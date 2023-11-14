@@ -7,7 +7,7 @@ import hashlib
 import binascii
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:0000@localhost/capstone' # DB 수정
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill' # DB 수정
 db = SQLAlchemy(app)
 
 

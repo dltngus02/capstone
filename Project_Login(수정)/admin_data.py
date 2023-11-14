@@ -3,12 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:0000@localhost/auto_bill'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gusdn0228@localhost/auto_bill'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
 class Admin(db.Model):
-    __tablename__ = 'administers'
+    __tablename__ = 'administerss11'
 
     id = db.Column(db.String(64), primary_key=True)
     password = db.Column(db.String(128))
