@@ -4,7 +4,7 @@ from flask_socketio import emit
 from app import db, socketio
 from DB_models.model import AutoBill
 from common.config import basic_path
-
+from DB_models.model import Quantity
 
 bp = Blueprint('shopping',
                 __name__,
@@ -54,6 +54,17 @@ def send_data():
         data = request.json
         # Handle the data as needed
         print("Received data:", data)
+        product = {}
+        for item in data:
+            amount = item.get('amount')
+            name = item.get('name')
+            price = item.get('price')
+
+            product[name] = amount
+            if name and amount:
+                # Update the quantity for the given name
+                Quantity.query.filter_by(name=name).update({'quantity': Quantity.quantity - amount})
+        db.session.commit()
         return jsonify(message='Data received successfully!')
     except Exception as e:
         return jsonify(error=str(e)), 500

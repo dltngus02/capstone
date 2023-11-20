@@ -27,7 +27,7 @@ const PayPage = () => {
       var quantity = Math.random() * 1000;
       
       const Payment = () => {
-        onClickDone()
+        
         const {IMP} = window;
         IMP.init("imp41444282");
         var HOTNODDLE = "NODDLE"+quantity;
@@ -44,6 +44,11 @@ const PayPage = () => {
         const {sucess,error_msg,imp_uid,merchant_uid,pay_method,paid_amount,status} = response
         if(sucess){
           alert("결제성공");
+          onClickDone()
+        }
+        else if(error_msg==undefined){
+          alert("결제성공");
+          onClickDone()       
         }
         else{
           alert(`결제실패 : ${error_msg}`);

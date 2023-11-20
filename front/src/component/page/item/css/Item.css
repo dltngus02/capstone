@@ -23,10 +23,10 @@
 .itemMap {
   width: 100%;
   height: auto; /* 화면 전체 높이에서 버튼 영역의 높이를 뺀 값으로 설정 */
-  min-height: 56vh; /* 최소 높이로 48vh 유지 */
+  min-height: 44vh; /* 최소 높이로 48vh 유지 */
   overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
   line-height: 70px;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 
@@ -159,11 +159,12 @@
   position: absolute;
   font-size: 35px; /* 원하는 폰트 크기로 조정하세요 */
   font-weight: bold; /* 폰트 굵기 설정 */
-  top: 40%;
-  left: 37%;
+  top: 59%;
+  left: 30%;
   transform: translate(-50%, -50%);
   color: black; /* 마이너스 기호 색상 설정 */
   width: 4px;
+  font-weight: lighter;
   transition: color 0.2s; /* 색상 전환에 트랜지션 추가 */
 }
 
