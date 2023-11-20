@@ -1,0 +1,107 @@
+.counterBack {
+  margin-top: 30px;
+  height: 17.8vh;
+  width: 99vw;
+  font-size: 40px;
+}
+
+.numContainer {
+  display: flex;
+  width: 97vw;
+  font-weight: bold;
+  text-align: left;
+}
+
+.numdiv {
+  display: flex;
+  width: 30.61%;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
+.priceContainer {
+  margin-top: -2%;
+  margin-left: 2%;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center; /* 추가 */
+  width: 97vw;
+  height: 8vh;
+  font-size: 40px;
+  font-weight: bold;
+
+}
+
+.allAmount {
+  width: 40%;
+  text-align: left;
+}
+
+.allsum {
+  display: flex;
+  width: 30.61%;
+  font-size: 40px;
+}
+
+.sumAmount {
+  width: 60%;
+  text-align: right;
+}
+
+.allPrice {
+  width: 40vw;
+  text-align: left;
+}
+
+.sumPrice {
+  width: 40vw;
+  text-align: right;
+  color: #d24232;
+}
+
+
+
+.payButton {
+  border: none;
+  cursor: pointer;
+  margin-right: 2vw;
+  margin-top: 0vh;
+  width: 20%;
+  font-size: 40px;
+  color: white;
+  background-color: #d24232;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.payButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #d24232;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transform: scale3d(0.6, 0.6, 1);
+  transition: transform 0.3s, opacity 0.3s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.payButton:hover {
+  background-color: #fff;
+  color: #d24232;
+}
+
+.payButton:hover::before {
+  transform: scale3d(1, 1, 1);
+  opacity: 1;
+}
+

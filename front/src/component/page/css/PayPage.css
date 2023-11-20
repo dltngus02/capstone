@@ -1,0 +1,124 @@
+.wrapper1 {
+    width: 100%;
+    height: 100vh;
+    background-color: #d24232;
+  }
+  .Header1 {
+    width: 100%;
+    height: 120px;
+    color: white;
+    font-size: 2rem;
+  }
+  
+  .goods1 {
+    width: 36%;
+    height: 140px;
+    background-color: #a9a9a9;
+    position: absolute;
+    text-align: center;
+    line-height: 110px;
+    font-weight: bold;
+  }
+  
+  .pay1 {
+    margin-left: 36%;
+    width: 32%;
+    height: 140px;
+    background-color: #d24232;
+    position: absolute;
+  
+    text-align: center;
+    line-height: 110px;
+    font-weight: bold;
+  }
+  
+  .done1 {
+    margin-left: 68%;
+    width: 32%;
+    height: 140px;
+    background-color: #a9a9a9;
+    position: absolute;
+  
+    text-align: center;
+    line-height: 110px;
+    font-weight: bold;
+  }
+.wrapper{
+  margin-top : 1.1%;
+  margin-left: 0.2%;
+  margin-right : 0.2%;
+  height :88vh;
+  position: relative;
+  
+}
+
+.txt{
+  padding-top : 1.5%;
+  font-size : 50px;
+  text-align: center;
+  font-weight: bold;
+  height: 10%;
+  background-color: white;
+}
+
+.selectCash{
+  margin-top:0.2%;
+  height: 86.5%;
+  background-color: white;
+  display : flex;
+  
+}
+
+.cash{
+  margin-top : 6%;
+
+  margin-left : 20%;
+  font-size : 3vw;
+  width: 20vw;
+  height : 30vh;
+  border :None;
+  border-radius : 25px;
+  color : white;
+  font-weight: bold;
+  background-color: #d24232;
+  background-image : url("../kakao.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+ 
+
+}
+
+
+.card{
+  font-weight: bold;
+
+  margin-top : 6%;
+  margin-left : 20%;
+  width: 20vw;
+  height : 30vh;
+  border : None;
+  border-radius : 25px;
+  font-size : 3vw;
+  color : white;
+  background-color: #d24232;
+}
+.returnStart {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonCall1 {
+  cursor: pointer;
+  width: 13vw;
+  height: 60px;
+  border: none;
+  background-color: #a9a9a9;
+  color: white;
+  font-size: 1.5vw;
+  font-weight: bold;
+  border-radius: 5px;
+  position: absolute;
+  top: -100px;
+}

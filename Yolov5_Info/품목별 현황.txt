@@ -1,0 +1,36 @@
+과자: 50개
+(0번 ~ 50번)
+(Train Image: 5699개, Train Label: 5699개)
+(원래는 114x50 = 5700개여야 하는데, 농심 감자깡 이미지 데이터가 113개인 관계로)
+
+(Validation Image: 750개, Validation Label: 750개)
+
+
+음료: 30개
+(50번 ~ 79번)
+(Train Image: 3420개, Train Label: 3420개)
+(Validation Image: 450개, Validation Label: 450개)
+
+
+디저트: 10개
+(80번 ~ 89번)
+(Train Image: 1140개, Train Label: 1140개)
+(Validation Image: 150개, Validation Label: 150개)
+
+
+유제품: 5개
+(90번 ~ 94번)
+(Train Image: 570개, Train Label: 570개)
+(Validation Image: 75개, Validation Label: 75개)
+
+
+생활용품: 5개
+(95번 ~ 99번)
+(Train Image: 570개, Train Label: 570개)
+(Validation Image: 75개, Validation Label: 75개)
+
+
+
+
+
+

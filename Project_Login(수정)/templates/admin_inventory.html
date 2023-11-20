@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+
+    <style>
+    @font-face {
+        font-family: 'JalnanGothic';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    .h1font{
+        font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
+    }
+    .logout_button{
+        border-radius: 5px;
+        font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
+        background-color: #d24232;
+        position: relative;
+        border: 0;
+        padding: 15px 25px;
+        display: inline-block;
+        text-align: center;
+        color: white;
+        
+    }
+        body {
+            padding: 1.5em;
+            background: #f5f5f5;
+        }
+
+        .inventory-table {
+            font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
+            border: 1px solid #a39485;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .inventory-table th {
+            
+            text-align: left;
+            background: #d24232;
+            color: #fff;
+            font-weight: bold;
+            padding: 1em 0.5em;
+        }
+
+        .inventory-table td {
+            padding: 1em 0.5em;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #73685d;
+        }
+
+        @media all and (max-width: 768px) {
+            .inventory-table,
+            .inventory-table thead,
+            .inventory-table tbody,
+            .inventory-table th,
+            .inventory-table td,
+            .inventory-table tr {
+                display: block;
+            }
+
+            .inventory-table th {
+                text-align: right;
+            }
+
+            .inventory-table {
+                position: relative;
+                padding-bottom: 0;
+                border: none;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .inventory-table thead {
+                float: left;
+                white-space: nowrap;
+            }
+
+            .inventory-table tbody {
+                overflow-x: auto;
+                overflow-y: hidden;
+                position: relative;
+                white-space: nowrap;
+            }
+
+            .inventory-table tr {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .inventory-table th {
+                border-bottom: 1px solid #a39485;
+            }
+
+            .inventory-table td {
+                border-bottom: 1px solid #e5e5e5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="h1font">{{ current_user.email.split('@')[0] }}님의 Inventory Page</h1>
+
+    <form action="/admin/logout" method="post">
+        <input type="submit" class="logout_button" value="로그아웃">
+    </form>
+
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
