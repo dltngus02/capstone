@@ -79,43 +79,79 @@ const Item = () => {
       });
   };
 
- useEffect(() => {
-  const socket = io.connect('http://127.0.0.1:5000');
-  try {
-    socket.on('update_product', (product) => {
-      console.log('Received product data:', product);
+  useEffect(() => {
+    const socket = io.connect('http://127.0.0.1:5000');
+    try {
+      socket.on('update_product', (product) => {
+        console.log('Received product data:', product);
+  
+        const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
+  
+        // 상태 업데이트 로직
+        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name);
+        if (existingProductIndex !== -1) {
+          // 이미 존재하는 제품인 경우 수량을 업데이트
+          updatedProducts[existingProductIndex].amount += product.amount;
+        } else {
+          // 새로운 제품인 경우 상태에 추가
+          updatedProducts.push({
+            amount: product.amount,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+          });
+        }
+  
+        // amount가 0인 상품 필터링하여 삭제
+        const filteredProducts = updatedProducts.filter(item => item.amount !== 0);
+  
+        // 상태 업데이트
+        dispatch({ type: "SET_PRODUCTS", data: filteredProducts });
+      });
+    } catch (error) {
+      console.error('데이터를 가져오는 중 오류 발생:', error);
+    }
+    return () => {
+      socket.disconnect();
+    };
+  }, [state.products]);
 
-      const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
-
-      // 상태 업데이트 로직
-      const existingProductIndex = updatedProducts.findIndex(item => (item.name === product.name && state.idx<=item.id));
-      if (existingProductIndex !== -1) {
-        // 이미 존재하는 제품인 경우 수량을 업데이트
-        updatedProducts[existingProductIndex].amount += product.amount;
-      } else {
-        // 새로운 제품인 경우 상태에 추가
-        updatedProducts.push({
-          amount: product.amount,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-        });
-      }
-
-      // amount가 0인 상품 필터링하여 삭제
-      const filteredProducts = updatedProducts.filter(item => item.amount !== 0);
-
-      // 상태 업데이트
-      dispatch({ type: "SET_PRODUCTS", data: filteredProducts });
-    });
-  } catch (error) {
-    console.error('데이터를 가져오는 중 오류 발생:', error);
-  }
-  return () => {
-    socket.disconnect();
-  };
-}, [state.products]);
-
+  useEffect(() => {
+    const socket = io.connect('http://127.0.0.1:5000');
+    try {
+      socket.on('update_product', (product) => {
+        console.log('Received product data:', product);
+  
+        const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
+  
+        // 상태 업데이트 로직
+        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name);
+        if (existingProductIndex !== -1) {
+          // 이미 존재하는 제품인 경우 수량을 업데이트
+          updatedProducts[existingProductIndex].amount += product.amount;
+        } else {
+          // 새로운 제품인 경우 상태에 추가
+          updatedProducts.push({
+            amount: product.amount,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+          });
+        }
+  
+        // amount가 0인 상품 필터링하여 삭제
+        const filteredProducts = updatedProducts.filter(item => item.amount !== 0);
+  
+        // 상태 업데이트
+        dispatch({ type: "SET_PRODUCTS", data: filteredProducts });
+      });
+    } catch (error) {
+      console.error('데이터를 가져오는 중 오류 발생:', error);
+    }
+    return () => {
+      socket.disconnect();
+    };
+  }, [state.products]);
   const handleClear = () => {
     dispatch({ type: "CLEAR" });
   };
