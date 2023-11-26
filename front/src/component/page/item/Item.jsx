@@ -88,7 +88,7 @@ const Item = () => {
         const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
   
         // 상태 업데이트 로직
-        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name);
+        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name && state.idx <=item.id);
         if (existingProductIndex !== -1) {
           // 이미 존재하는 제품인 경우 수량을 업데이트
           updatedProducts[existingProductIndex].amount += product.amount;
