@@ -180,7 +180,7 @@
   
   bottom: 0; /* 화면 하단에 위치 */
   left: 40px; /* 좌측 여백 조정 */
-  width: 36vw;
+  width: 40vw;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -188,8 +188,9 @@
 }
 
 .buttonClear {
+  float : left;
   cursor: pointer;
-  width: 20%;
+  width: 13vw;
   height: 100%;
   background-color: #a9a9a9;
   border: none;
@@ -229,8 +230,10 @@
 
 .buttonCall {
   cursor: pointer;
+  
   width: 13vw;
   height: 100%;
+  margin-left : 0.3vw;
   border: none;
   background-color: #a9a9a9;
   color: white;
