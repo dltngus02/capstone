@@ -26,20 +26,44 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREASE":
-      const newIncreaseData = state.products.map((item) =>
-        item.name === action.data ? { ...item, amount: item.amount + 1 } : item
-      );
+      const updatedProducts = [...action.sliceproducts];
+      const existingProductIndex = updatedProducts.findIndex((item,index) => item.name === action.newproduct.name && state.idx <= index);
+      if (existingProductIndex !== -1) {
+        // 이미 존재하는 제품인 경우 수량을 업데이트
+        updatedProducts[existingProductIndex].amount += 1;
+      } else {
+        // 새로운 제품인 경우 상태에 추가
+        updatedProducts.push({
+          amount: action.newproduct.amount,
+          name: action.newproduct.name,
+          price: action.newproduct.price,
+          image: action.newproduct.image,
+        });
+      }
       return {
         ...state,
-        products: newIncreaseData,
+        products: updatedProducts,
       };
+
+    case "BUTTON_INCREASE":
+      const updatedProductsButton = [...state.products];
+      const existingProductIndexButton =  updatedProductsButton.map((item,index) =>
+      item.name === action.data && state.idx <=index
+        ? { ...item, amount: item.amount + 1 }
+        : item
+    )
+      return{
+        ...state,
+        products: existingProductIndexButton,
+      };
+    
     case "DECREASE":
-      const newDecreaseData = state.products.map((item) =>
-        item.name === action.data && item.amount > 0
+      const newDecreaseData = state.products.map((item,index) =>
+        item.name === action.data && item.amount > 0 && state.idx <=index
           ? { ...item, amount: item.amount - 1 }
           : item
       )
-      const newZeroData = newDecreaseData.filter((item) => item.amount !== 0);
+      const newZeroData = newDecreaseData.filter((item,index) => item.amount !== 0);
       return {
         ...state,
         products: newZeroData,
@@ -79,34 +103,48 @@ const Item = () => {
       });
   };
 
+  // useEffect(() => {
+  //   const socket = io.connect('http://127.0.0.1:5000');
+  //   try {
+  //     socket.on('update_product', (product) => {
+  //       console.log('Received product data:', product);
+  
+  //       const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
+  
+  //       // 상태 업데이트 로직
+  //       const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name);
+  //       if (existingProductIndex !== -1) {
+  //         // 이미 존재하는 제품인 경우 수량을 업데이트
+  //         updatedProducts[existingProductIndex].amount += product.amount;
+  //       } else {
+  //         // 새로운 제품인 경우 상태에 추가
+  //         updatedProducts.push({
+  //           amount: product.amount,
+  //           name: product.name,
+  //           price: product.price,
+  //           image: product.image,
+  //         });
+  //       }
+
+  
+  //       // 상태 업데이트
+  //       dispatch({ type: "SET_PRODUCTS", data: filteredProducts, products:state.products.slice(state.idx) });
+  //     });
+  //   } catch (error) {
+  //     console.error('데이터를 가져오는 중 오류 발생:', error);
+  //   }
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, [state.products]);
+
   useEffect(() => {
     const socket = io.connect('http://127.0.0.1:5000');
     try {
       socket.on('update_product', (product) => {
         console.log('Received product data:', product);
-  
-        const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
-  
-        // 상태 업데이트 로직
-        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name && state.idx <=item.id);
-        if (existingProductIndex !== -1) {
-          // 이미 존재하는 제품인 경우 수량을 업데이트
-          updatedProducts[existingProductIndex].amount += product.amount;
-        } else {
-          // 새로운 제품인 경우 상태에 추가
-          updatedProducts.push({
-            amount: product.amount,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-          });
-        }
-  
-        // amount가 0인 상품 필터링하여 삭제
-        const filteredProducts = updatedProducts.filter(item => item.amount !== 0);
-  
-        // 상태 업데이트
-        dispatch({ type: "SET_PRODUCTS", data: filteredProducts });
+        dispatch({type: "INCREASE", sliceproducts : state.products, newproduct : product})
+        console.log("products", state.products);
       });
     } catch (error) {
       console.error('데이터를 가져오는 중 오류 발생:', error);
@@ -116,42 +154,7 @@ const Item = () => {
     };
   }, [state.products]);
 
-  useEffect(() => {
-    const socket = io.connect('http://127.0.0.1:5000');
-    try {
-      socket.on('update_product', (product) => {
-        console.log('Received product data:', product);
-  
-        const updatedProducts = [...state.products]; // 이전 상태를 복제하여 업데이트할 예정
-  
-        // 상태 업데이트 로직
-        const existingProductIndex = updatedProducts.findIndex(item => item.name === product.name);
-        if (existingProductIndex !== -1) {
-          // 이미 존재하는 제품인 경우 수량을 업데이트
-          updatedProducts[existingProductIndex].amount += product.amount;
-        } else {
-          // 새로운 제품인 경우 상태에 추가
-          updatedProducts.push({
-            amount: product.amount,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-          });
-        }
-  
-        // amount가 0인 상품 필터링하여 삭제
-        const filteredProducts = updatedProducts.filter(item => item.amount !== 0);
-  
-        // 상태 업데이트
-        dispatch({ type: "SET_PRODUCTS", data: filteredProducts });
-      });
-    } catch (error) {
-      console.error('데이터를 가져오는 중 오류 발생:', error);
-    }
-    return () => {
-      socket.disconnect();
-    };
-  }, [state.products]);
+
   const handleClear = () => {
     dispatch({ type: "CLEAR" });
   };
@@ -160,7 +163,7 @@ const Item = () => {
     <div className="itemBack">
       <div className="itemMap">
         {state.products.slice(state.idx).map((item, index) => (
-             item.amount > 0 && (
+            (
           <div className="itemflex" key={index}>
             <div className="itemId">
               <p>{index}</p>
@@ -175,7 +178,7 @@ const Item = () => {
               <div className="divplus">
                 <button
                   className="button_plus"
-                  onClick={() => dispatch({ type: "INCREASE", data: item.name })}
+                  onClick={() => dispatch({ type: "BUTTON_INCREASE", data: item.name })}
                 ></button>
               </div>
               <p className="itemAmount">{item.amount}</p>
@@ -184,7 +187,7 @@ const Item = () => {
                   className="button_minus"
                   onClick={() => dispatch({ type: "DECREASE", data: item.name })}
                   
-                >{console.log(state.products)}</button>
+                ></button>
               </div>
             </div>
             <div className="itemPrice">
