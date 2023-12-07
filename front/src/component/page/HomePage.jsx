@@ -1,30 +1,16 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
 import "./css/HomePage.css";
 import { useNavigation } from "../Router/Router";
-import { useNavigate } from "react-router-dom";
-import io from 'socket.io-client';
+
 const HomePage = () => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
-    const navigate = useNavigate();
-    const callAdmin = () => {
-      fetch('/admin/call', {
-        method: 'GET',
-      })
-        .then(response => response.json())
-        .then(data => {
-          alert(data.message);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    };
+
   const handleButtonClick = () => {
     window.location.href = 'http://127.0.0.1:5000/admin/login';
   };
   const handleButtonClickStart = () => {
     onClickStart()
-    // window.location.href = 'http://127.0.0.1:5000/get_products';
   };
   return (
     <>

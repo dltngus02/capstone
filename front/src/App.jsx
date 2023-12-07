@@ -15,7 +15,6 @@ const App = () => {
           <Route path="/pay/*" element={<PayPage></PayPage>}></Route>
           <Route path="/done/*" element={<DonePage></DonePage>}></Route>
           <Route path="/owner/*" element={<OwnerPage></OwnerPage>}></Route>
-          {/* <Route path="*" element={<NotFound />}></Route> */}
         </Routes>
       </BrowserRouter>
     </div>

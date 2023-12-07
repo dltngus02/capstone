@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <style>
+        @font-face {
+        font-family: 'JalnanGothic';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
             background: white;
         }
 
@@ -278,7 +284,6 @@
     <div class="container">
         <h1>Admin Login</h1>
         <form method="POST">
-            <!-- This hidden_tag is a CSRF security feature. -->
             {{ form.hidden_tag() }}
             <div class="input__block first-input__block">
                 <label for="email">Email</label>
@@ -289,7 +294,6 @@
                 {{ form.password(id="password") }}
             </div>
             {{ form.submit(class_="signin__btn") }}
-        
             {% if errors %}
                 <div id="error-message" class="error-message">
                     사용자 정보가 일치하지 않습니다!

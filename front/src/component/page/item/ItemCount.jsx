@@ -12,10 +12,9 @@ const ItemCount = ({ mockData,allData }) => {
     (total, data) => total + data.price * data.amount,
     0
   );
-  const jsonData = JSON.stringify(allData, null, 2);
+
   const navigate = useNavigate();
   const url = `/pay?amount=${sumPrice}`; 
-  console.log(sumPrice)
   const sendDataToFlask = () => {
     navigate(url);
     fetch('/send_data', {

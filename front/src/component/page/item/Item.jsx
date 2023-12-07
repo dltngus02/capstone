@@ -1,25 +1,12 @@
 import React, { useEffect, useReducer, useCallback, useState } from "react";
 import { useNavigation } from "../../Router/Router";
 import ItemCount from "./ItemCount";
-import image1 from "./1.jpg";
-import image2 from "./2.jpg";
 import Axios from 'axios';
-import minus from "./minus.png";
 import io from 'socket.io-client';
 import "./css/Item.css";
 
 const initialState = {
   idx: 0,
-  mockData: [
-    {
-      id: 1,
-      img: image1,
-      name: "농심 새우깡 500g",
-      amount: 1,
-      price: 1500,
-    },
-
-  ],
   products: [],
 };
 
@@ -73,11 +60,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         idx : state.products.length,
-      };
-    case "SET_PRODUCTS":
-      return {
-        ...state,
-        products: action.data,
       };
     default:
       return state;
@@ -207,7 +189,7 @@ const Item = () => {
           관리자 호출
         </button>
       </div>
-      <ItemCount mockData={state.products.slice(state.idx)} allData={state.products.slice(state.idx)} />
+      <ItemCount mockData={state.products.slice(state.idx)} />
     </div>
   );
 };

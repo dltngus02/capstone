@@ -5,7 +5,6 @@ const DonePage = () => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
   const [ count, setCount ] = useState(10);
-  const [alert,setAlert] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((count) => count - 1);
