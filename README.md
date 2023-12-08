@@ -21,7 +21,7 @@
 - 데이터베이스 툴 : mysql 8.0
 - 협업 툴 : git, github
 
-# UML 다이어그램
+# 📊UML 다이어그램
 ![image](https://github.com/dltngus02/capstone/assets/120762921/b1ea9450-cf9a-4297-9dd0-9efe91838aa0)
 ![image](https://github.com/dltngus02/capstone/assets/120762921/5e136e6e-b2e5-4e09-ad22-d191ca044521)
 ![image](https://github.com/dltngus02/capstone/assets/120762921/dec174f0-3b48-4a8a-bc18-7246b86967f5)
