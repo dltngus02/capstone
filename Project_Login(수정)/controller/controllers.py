@@ -5,7 +5,8 @@ from app import db, socketio
 from DB_models.model import AutoBill
 from common.config import basic_path
 from DB_models.model import Quantity
-
+import random
+from flask import session
 bp = Blueprint('shopping',
                 __name__,
                 url_prefix='/')
@@ -47,7 +48,77 @@ def get_products():
 
 def get_thing_by_id(id):
     return AutoBill.query.get(id)
+@bp.route('/get_random_products', methods=['GET'])
+def get_random_products():
+    try:
+        recommendation = session.get('recommendation')
+        # recommendation을 이용하여 필요한 작업 수행
+        # 예시로, recommendation에 따라 다른 동작을 수행
+        if recommendation == '1':
+            all_products = AutoBill.query.all()
+            quantitys = Quantity.query.all()
+            product_list = []
+            for product in all_products:
+                print(product)
+                product_data = {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'image': product.image,
+                }
+                for q in quantitys:
+                    if(product.name==q.name):
+                        product_data['quantity'] = q.quantity
+                        break
+                product_list.append(product_data)
+                
+            sorted_product_data = sorted(product_list, key=lambda x: x['quantity'], reverse=True)[:3]
+            for product_data in sorted_product_data:
+                socketio.emit('recommend_product', product_data)
+            return jsonify({'products': sorted_product_data})
+      
+        elif recommendation == '2':
+            all_products = AutoBill.query.all()
+            random_products = random.sample(all_products, min(len(all_products), 3))
+            product_list = []
+            for product in random_products:
+                
+                product_data = {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'image': product.image,
+                }
+                product_list.append(product_data)
+                socketio.emit('recommend_product', product_data)
+            return jsonify({'products': product_list})
 
+        elif recommendation == '3':
+            all_products = AutoBill.query.all()
+            quantitys = Quantity.query.all()
+            product_list = []
+            for product in all_products:
+                print(product)
+                product_data = {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'image': product.image,
+                }
+                for q in quantitys:
+                    if(product.name==q.name):
+                        product_data['quantity'] = q.quantity
+                        break
+                product_list.append(product_data)
+                
+            sorted_product_data = sorted(product_list, key=lambda x: x['quantity'])[:3]
+            for product_data in sorted_product_data:
+                socketio.emit('recommend_product', product_data)
+            return jsonify({'products': sorted_product_data})
+        else:
+            pass
+    except Exception as e:
+        return jsonify({'error': str(e)})
 @bp.route('/send_data', methods=['POST'])
 def send_data():
     try:

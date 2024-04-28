@@ -9,7 +9,17 @@ const initialState = {
   idx: 0,
   products: [],
 };
+// 쿠키 설정
+const setCookie = (name, value, days) => {
+  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+};
 
+// 쿠키 가져오기
+const getCookie = (name) => {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? decodeURIComponent(cookieValue.pop()) : null;
+};
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREASE":
@@ -127,6 +137,7 @@ const Item = () => {
         console.log('Received product data:', product);
         dispatch({type: "INCREASE", sliceproducts : state.products, newproduct : product})
         console.log("products", state.products);
+        document.cookie = `products=${JSON.stringify(state.products)}; path=/`;
       });
     } catch (error) {
       console.error('데이터를 가져오는 중 오류 발생:', error);
@@ -140,7 +151,8 @@ const Item = () => {
   const handleClear = () => {
     dispatch({ type: "CLEAR" });
   };
-
+  console.log('aaa' + getCookie('products'))
+  console.log(state.idx)
   return (
     <div className="itemBack">
       <div className="itemMap">

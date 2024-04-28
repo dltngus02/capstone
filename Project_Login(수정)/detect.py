@@ -60,7 +60,7 @@ import torch
 import cv2
 
 def detect_objects(frame_difference=40, confidence_threshold=0.4):
-    model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/leesuhyeon/Desktop/새 폴더/Project_Login(수정)/best.pt')
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'C:/Users/leesuhyeon/Desktop/2024 1학기 과제/캡디/캡디2/Project_Login(수정)/best.pt')
     
     cap = cv2.VideoCapture(0)
     # cap = cv2.VideoCapture("http://192.168.137.102:8090/?action=stream")

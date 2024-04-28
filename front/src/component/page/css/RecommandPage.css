@@ -1,0 +1,58 @@
+.recommendBackground{
+    margin-bottom: 55vh;
+    width: 99% ;
+    height: 90%;
+    margin-left: 0.5%;
+  
+    background-color: #ffffff ;
+ 
+    padding-top: 2px; /* 헤더 아래 2px 떨어진 위치 */
+}
+.recommendBackground > div {
+    margin-top : 1%;
+    text-align: center;
+    font-size: 50px; /* 텍스트의 크기를 30px로 설정합니다. */
+}
+.recommendBackground > div > div {
+    margin-top : 1.5%;
+    text-align: center;
+    font-size: 35px; /* 텍스트의 크기를 30px로 설정합니다. */
+}
+.wrapperrec {
+    justify-content: space-around; /* 요소들을 가운데 정렬 */
+    align-items: center; /* 요소들을 수직 가운데 정렬 */
+    display: flex; /* Flexbox 적용 */
+
+    height: 70%; /* 예시로 설정한 높이 */
+    width : 99%;
+}
+
+.firstdiv, .seconddiv, .thirddiv {
+    flex: 1;
+    height: 90%; /* 예시로 설정한 높이 */
+    width : 100%;
+;
+    margin: 10px; /* 각 요소 사이의 간격 설정 */
+    display: flex; /* 내부 요소를 가로로 배열하기 위해 flex 속성 사용 */
+    flex-direction: column; /* 내부 요소를 세로 방향으로 배열 */
+    align-items: center; /* 내부 요소를 수직 중앙 정렬 */
+}
+
+/* 이미지 스타일링 */
+.firstdiv > img,
+.seconddiv > img,
+.thirddiv > img {
+  max-width: 50%; /* 이미지가 자식 div에 맞춰 최대 너비로 조정되도록 설정 */
+  max-height : 50%;
+  height: auto; /* 이미지 비율 유지를 위해 높이를 자동으로 설정 */
+  margin-bottom: 5px; /* 이미지 아래 여백 추가 */
+}
+
+.firstdiv > button,
+.seconddiv > button,
+.thirddiv > button {
+  max-width: 100%; /* 이미지가 자식 div에 맞춰 최대 너비로 조정되도록 설정 */
+  max-height : 100%;
+  height: auto; /* 이미지 비율 유지를 위해 높이를 자동으로 설정 */
+  margin-bottom: 10px; /* 이미지 아래 여백 추가 */
+}

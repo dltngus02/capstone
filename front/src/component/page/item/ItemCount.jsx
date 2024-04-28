@@ -4,7 +4,7 @@ import Axios from 'axios';
 import "./css/ItemCounter.css";
 import { useNavigate } from 'react-router-dom';
 const ItemCount = ({ mockData,allData }) => {
-  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
+  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain,onClickRec } =
     useNavigation();
 
   const sumAmount = mockData.reduce((total, data) => total + data.amount, 0);
@@ -15,8 +15,12 @@ const ItemCount = ({ mockData,allData }) => {
 
   const navigate = useNavigate();
   const url = `/pay?amount=${sumPrice}`; 
+  const onClickEvent = () => {
+    sendDataToFlask();
+    onClickRec();
+  }
   const sendDataToFlask = () => {
-    navigate(url);
+    //navigate(url);
     fetch('/send_data', {
       method: 'POST',
       headers: {
@@ -32,6 +36,8 @@ const ItemCount = ({ mockData,allData }) => {
         console.log(error);
       });
   };
+  document.cookie = `sumprice=${sumPrice}; path=/`;
+
   return (
     <>
       <hr />
@@ -48,7 +54,7 @@ const ItemCount = ({ mockData,allData }) => {
                 <p className="allPrice"> 총 금액</p>
                 <p className="sumPrice">{sumPrice}원</p>
               </div>
-              <button className="payButton" onClick={sendDataToFlask} >
+              <button className="payButton" onClick={onClickEvent} >
                   결제하기
                 </button>
  

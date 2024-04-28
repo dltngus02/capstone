@@ -4,11 +4,16 @@ import "./css/PayPage.css";
 import Axios from "axios";
 import { useLocation } from 'react-router-dom';
 const PayPage = () => {
+  const clearCookie = (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  };
+
   const location = useLocation();
   const [price,setPrice] = useState();
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
     useNavigation();
       useEffect(() => {
+        clearCookie('products')
         const queryParams = new URLSearchParams(location.search);
         const amount = queryParams.get('amount');
         setPrice(amount)

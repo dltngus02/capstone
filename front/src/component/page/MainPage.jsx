@@ -3,7 +3,7 @@ import { useNavigation } from "../Router/Router";
 import Item from "./item/Item";
 import "./css/MainPage.css";
 const MainPage = () => {
-  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
+  const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain, onClickRec } =
     useNavigation();
 
   return (

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+
+    <style>
+    .h1font{
+        font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
+    }
+    .logout_button, [type="submit"] {
+        border-radius: 5px;
+        font-family: 'JalnanGothic', sans-serif; /* 웹폰트 적용 */
+        background-color: #d24232;
+        position: relative;
+        border: 0;
+        padding: 15px 25px;
+        display: inline-block;
+        text-align: center;
+        color: white;
+    }
+    /* Global CSS */
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the left */
+        border: none;
+        margin: 0;
+        padding: 10px 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    label {
+        font-size: 18px;
+        line-height: 2rem;
+        padding: 0.2em 0.4em;
+    }
+
+    [type="radio"],
+    span {
+        vertical-align: middle;
+    }
+
+    [type="radio"] {
+        appearance: none;
+        border: max(2px, 0.1em) solid gray;
+        border-radius: 50%;
+        width: 1.25em;
+        height: 1.25em;
+        transition: border 0.5s ease-in-out;
+    }
+
+    [type="radio"]:checked {
+        border: 0.4em solid tomato;
+    }
+
+    [type="radio"]:focus-visible {
+        outline-offset: max(2px, 0.1em);
+        outline: max(2px, 0.1em) dotted tomato;
+    }
+
+    [type="radio"]:hover {
+        box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+        cursor: pointer;
+    }
+
+    [type="radio"]:hover + span {
+        cursor: pointer;
+    }
+
+    [type="radio"]:disabled {
+        background-color: lightgray;
+        box-shadow: none;
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    [type="radio"]:disabled + span {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+    </style>
+</head>
+<body>
+    <h1 class="h1font">{{ current_user.email.split('@')[0] }}님의 추천 setting Page</h1>
+
+    <fieldset>
+        <form method="get">
+            <label>
+                <input type="radio" id="option1" name="recommendation" value="1">
+                <span>가장 재고가 많이 남은 상품 추천</span>
+            </label><br>
+            <label>
+                <input type="radio" id="option2" name="recommendation" value="2">
+                <span>랜덤 상품 추천</span>
+            </label><br>
+            <label>
+                <input type="radio" id="option3" name="recommendation" value="3">
+                <span>가장 재고가 적게 남은 상품 추천</span>
+            </label><br>
+            <input type="submit" value="설정 완료">
+
+        </form>
+    </fieldset>
+    <form action="/admin/logout" method="post">
+        <input type="submit" class="logout_button" value="로그아웃">
+    </form>
+</body>
+</html>

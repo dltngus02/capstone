@@ -22,12 +22,16 @@ export const useNavigation = () => {
   const onClickMain = () => {
     navigate("/");
   };
-
+  const onClickRec = () => {
+    navigate("/recommand")
+  }
+ 
   return {
     onClickStart,
     onClickOwner,
     onClickPay,
     onClickDone,
     onClickMain,
+    onClickRec,
   };
 };

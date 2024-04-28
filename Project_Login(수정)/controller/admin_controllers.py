@@ -4,7 +4,7 @@ from flask_login import login_user,login_required,logout_user
 from forms import LoginForm
 import telepot
 from flask import jsonify
-
+from flask import session
 admin_bp = Blueprint('admin',
                      __name__,
                      url_prefix='/admin')
@@ -47,6 +47,13 @@ def logout():
     logout_user()
     flash('로그아웃!')
     return redirect(url_for('shopping.main'))
+
+@admin_bp.route('/setting', methods=['POST', 'GET'])
+@login_required
+def setting():
+    recommendation = request.args.get('recommendation')
+    session['recommendation'] = recommendation  # recommendation 값을 세션에 저장
+    return render_template('admin_setting.html', recommendation=recommendation)
 
 
 @admin_bp.route('/call', methods=['GET','POST'])
