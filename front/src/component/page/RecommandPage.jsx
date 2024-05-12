@@ -14,7 +14,20 @@ const RecommandPage = () => {
     const [products2, setProducts2] = useState([]);
     const [products3, setProducts3] = useState([]);
     const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } = useNavigation();
-    
+    const [ttsEnabled, setTtsEnabled] = useState(false);
+    useEffect(() => {
+      const ttsState = sessionStorage.getItem("ttsEnabled");
+      if (ttsState) {
+        setTtsEnabled(JSON.parse(ttsState));
+      }
+    }, []);
+    const handleMouseEnter = (event) => {
+      if (ttsEnabled) {
+        const tts_script = event.target.innerText;
+        const utterance = new SpeechSynthesisUtterance(tts_script); // SpeechSynthesisUtterance 객체 생성
+        window.speechSynthesis.speak(utterance); // TTS 실행
+      }
+    };
       useEffect(() => {
         fetch('/get_random_products')
           .then(response => response.json())
@@ -129,22 +142,22 @@ const RecommandPage = () => {
                     <p>{products1[1]}원</p>
                     <img src={products1[2]}/>
                     {console.log(products1[2])}
-                    <button onClick={onClickAdd1} className="payButton">추가</button>
+                    <button onClick={onClickAdd1} className="payButton" onMouseEnter={handleMouseEnter}>추가</button>
                 </div>
                 <div className="seconddiv">
                 {products2[0]}
                 <p>{products2[1]}원</p>
                 <img src={products2[2]}/>
-                <button onClick={onClickAdd2} className="payButton" >추가</button>
+                <button onClick={onClickAdd2} className="payButton" onMouseEnter={handleMouseEnter}>추가</button>
                 </div>
                 <div className="thirddiv">
                     {products3[0]}
                     <p>{products3[1]}원</p>
                     <img src={products3[2]}/>
-                    <button onClick={onClickAdd3} className="payButton" >추가</button>
+                    <button onClick={onClickAdd3} className="payButton" onMouseEnter={handleMouseEnter}>추가</button>
                 </div>
             </div>
-                <button onClick={onClickpay} className="payButton">결제하기</button>
+                <button onClick={onClickpay} className="payButton" onMouseEnter={handleMouseEnter}>결제하기</button>
             <div>
 
             </div>

@@ -81,7 +81,21 @@ const Item = () => {
     useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [deleteIndex, setDeleteIndex] = useState([]);
+  const [ttsEnabled, setTtsEnabled] = useState(false);
   const item_list = [];
+  useEffect(() => {
+    const ttsState = sessionStorage.getItem("ttsEnabled");
+    if (ttsState) {
+      setTtsEnabled(JSON.parse(ttsState));
+    }
+  }, []);
+  const handleMouseEnter = (event) => {
+    if (ttsEnabled) {
+      const tts_script = event.target.innerText;
+      const utterance = new SpeechSynthesisUtterance(tts_script); // SpeechSynthesisUtterance 객체 생성
+      window.speechSynthesis.speak(utterance); // TTS 실행
+    }
+  };
   const callAdmin = () => {
     fetch('/admin/call', {
       method: 'GET',
@@ -191,13 +205,13 @@ const Item = () => {
         )))}
       </div>
       <div className="buttonContainer">
-        <button className="buttonClear" onClick={handleClear}>
+        <button className="buttonClear" onClick={handleClear} onMouseEnter={handleMouseEnter}>
           전체취소
         </button>
-        <button className="buttonCall" onClick={onClickMain}>
+        <button className="buttonCall" onClick={onClickMain} onMouseEnter={handleMouseEnter}>
         처음으로
         </button>
-        <button className="buttonReturnStart" onClick={callAdmin}>
+        <button className="buttonReturnStart" onClick={callAdmin} onMouseEnter={handleMouseEnter}>
           관리자 호출
         </button>
       </div>

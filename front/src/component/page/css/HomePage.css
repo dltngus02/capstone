@@ -65,3 +65,27 @@
   cursor: pointer;
   position: absolute;
 }
+
+.ttsButton {
+  border: none;
+  cursor: pointer;
+  margin-right: 2vw;
+  margin-top: 0vh;
+  width: 20%;
+  font-size: 40px;
+  color: white;
+  background-color: #d24232;
+  border-radius: 15px;
+  font-weight: bold;
+  text-align: center;
+  position: fixed; /* 화면을 기준으로 고정된 위치에 배치 */
+  bottom: 20px; /* 아래 여백 */
+  right: 20px; /* 오른쪽 여백 */
+  overflow: hidden;
+  transition: background-color 0s, color 0s;
+}
+
+.ttsButton:hover {
+  background-color: #fff;
+  color: #d24232;
+}

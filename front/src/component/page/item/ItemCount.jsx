@@ -6,13 +6,25 @@ import { useNavigate } from 'react-router-dom';
 const ItemCount = ({ mockData,allData }) => {
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain,onClickRec } =
     useNavigation();
-
+    const [ttsEnabled, setTtsEnabled] = useState(false);
   const sumAmount = mockData.reduce((total, data) => total + data.amount, 0);
   const sumPrice = mockData.reduce(
     (total, data) => total + data.price * data.amount,
     0
   );
-
+  useEffect(() => {
+    const ttsState = sessionStorage.getItem("ttsEnabled");
+    if (ttsState) {
+      setTtsEnabled(JSON.parse(ttsState));
+    }
+  }, []);
+  const handleMouseEnter = (event) => {
+    if (ttsEnabled) {
+      const tts_script = event.target.innerText;
+      const utterance = new SpeechSynthesisUtterance(tts_script); // SpeechSynthesisUtterance 객체 생성
+      window.speechSynthesis.speak(utterance); // TTS 실행
+    }
+  };
   const navigate = useNavigate();
   const url = `/pay?amount=${sumPrice}`; 
   const onClickEvent = () => {
@@ -54,7 +66,7 @@ const ItemCount = ({ mockData,allData }) => {
                 <p className="allPrice"> 총 금액</p>
                 <p className="sumPrice">{sumPrice}원</p>
               </div>
-              <button className="payButton" onClick={onClickEvent} >
+              <button className="payButton" onClick={onClickEvent} onMouseEnter={handleMouseEnter}>
                   결제하기
                 </button>
  

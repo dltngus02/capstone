@@ -7,7 +7,7 @@ const PayPage = () => {
   const clearCookie = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   };
-
+  const [ttsEnabled, setTtsEnabled] = useState(false);
   const location = useLocation();
   const [price,setPrice] = useState();
   const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
@@ -73,7 +73,19 @@ const PayPage = () => {
           alert(`결제실패 : ${error_msg}`);
         }
       }
-
+      useEffect(() => {
+        const ttsState = sessionStorage.getItem("ttsEnabled");
+        if (ttsState) {
+          setTtsEnabled(JSON.parse(ttsState));
+        }
+      }, []);
+      const handleMouseEnter = (event) => {
+        if (ttsEnabled) {
+          const tts_script = event.target.innerText;
+          const utterance = new SpeechSynthesisUtterance(tts_script); // SpeechSynthesisUtterance 객체 생성
+          window.speechSynthesis.speak(utterance); // TTS 실행
+        }
+      };
   return (
     <div className="wrapper1">
       <header>
@@ -86,18 +98,17 @@ const PayPage = () => {
       <div className="wrapper">
         <div className="txt">결제 수단을 선택해주세요</div>
         <div className="selectCash">
-          <button className="cash"  onClick={Payment}>
-        
-            
+          <button className="cash"  onClick={Payment} onMouseEnter={handleMouseEnter}>
+        카카오페이
           </button>
-          <button className="card" onClick={Payment1}>
+          <button className="card" onClick={Payment1} onMouseEnter={handleMouseEnter}>
   
             NHN KCP
           </button>
 
         </div>     
         <div className="returnStart">   
-          <button className="buttonCall1" onClick={onClickMain}>
+          <button className="buttonCall1" onClick={onClickMain} onMouseEnter={handleMouseEnter}>
             처음으로
           </button>
         </div>
