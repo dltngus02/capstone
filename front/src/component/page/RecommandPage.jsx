@@ -13,26 +13,7 @@ const RecommandPage = () => {
     const [products1, setProducts1] = useState([]);
     const [products2, setProducts2] = useState([]);
     const [products3, setProducts3] = useState([]);
-    const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } =
-      useNavigation();
-    //   const sendDataToFlask = () => {
-    //     //navigate(url);
-    //     fetch('/send_data', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(allData),
-    //     })
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         console.log(data.message);
-    //       })
-    //       .catch(error => {
-    //         console.log(error);
-    //       });
-    //   };
-      
+    const { onClickStart, onClickOwner, onClickPay, onClickDone, onClickMain } = useNavigation();
     
       useEffect(() => {
         fetch('/get_random_products')

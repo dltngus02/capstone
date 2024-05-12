@@ -45,6 +45,20 @@ const PayPage = () => {
         };
         IMP.request_pay(data,callback);
       }
+      const Payment1 = () => {
+        
+        const {IMP} = window;
+        IMP.init("imp47424221");
+        var HOTNODDLE = "NODDLE"+quantity;
+        const data = {
+            pg: "kcp",
+            pay_method: "card",
+            amount: `${price}`,
+            name: "무인가게 결제",
+            merchant_uid: HOTNODDLE,
+        };
+        IMP.request_pay(data,callback);
+      }
       const callback = (response) =>{
         const {sucess,error_msg,imp_uid,merchant_uid,pay_method,paid_amount,status} = response
         if(sucess){
@@ -76,9 +90,9 @@ const PayPage = () => {
         
             
           </button>
-          <button className="card" onClick={onClickDone}>
+          <button className="card" onClick={Payment1}>
   
-            현금
+            NHN KCP
           </button>
 
         </div>     

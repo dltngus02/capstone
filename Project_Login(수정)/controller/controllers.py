@@ -52,8 +52,6 @@ def get_thing_by_id(id):
 def get_random_products():
     try:
         recommendation = session.get('recommendation')
-        # recommendation을 이용하여 필요한 작업 수행
-        # 예시로, recommendation에 따라 다른 동작을 수행
         if recommendation == '1':
             all_products = AutoBill.query.all()
             quantitys = Quantity.query.all()
@@ -93,7 +91,7 @@ def get_random_products():
                 socketio.emit('recommend_product', product_data)
             return jsonify({'products': product_list})
 
-        elif recommendation == '3':
+        else:
             all_products = AutoBill.query.all()
             quantitys = Quantity.query.all()
             product_list = []
@@ -115,10 +113,10 @@ def get_random_products():
             for product_data in sorted_product_data:
                 socketio.emit('recommend_product', product_data)
             return jsonify({'products': sorted_product_data})
-        else:
-            pass
+
     except Exception as e:
         return jsonify({'error': str(e)})
+
 @bp.route('/send_data', methods=['POST'])
 def send_data():
     try:
@@ -133,7 +131,6 @@ def send_data():
 
             product[name] = amount
             if name and amount:
-                # Update the quantity for the given name
                 Quantity.query.filter_by(name=name).update({'quantity': Quantity.quantity - amount})
         db.session.commit()
         return jsonify(message='Data received successfully!')

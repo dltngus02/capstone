@@ -7,5 +7,5 @@ app.register_blueprint(controllers.bp)
 app.register_blueprint(admin_controllers.admin_bp)
 
 if __name__ == "__main__":
-    CORS(app)
+    CORS(app, supports_credentials=True)
     socketio.run(app, debug=True)
