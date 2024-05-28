@@ -31,6 +31,7 @@ def thank():
 def get_products():
     product_list = []
     for class_ids in detect_objects():
+        
         for class_id in class_ids:
             product = get_thing_by_id(class_id)
             if product:
@@ -43,6 +44,7 @@ def get_products():
                     "num": product.num
                 }
                 product_list.append(product_data)
+                print(product_list)
                 socketio.emit('update_product', product_data)
     return jsonify(item=product_list)
 
