@@ -34,11 +34,12 @@ const RecommandPage = () => {
           .then(data => {
             // 서버에서 받은 데이터 처리
             console.log(data);
+            const basePath = data.products[0].image.split("static")[0];
             const imagePath1 = data.products[0].image
  
             
             // 이미지 파일 주소를 웹 서버의 정적 파일 경로에 맞게 변경
-            const imageUrl1 = imagePath1.replace(/^C:\/Users\/leesuhyeon\/Desktop\/back\/Project_MVC/, '');
+            const imageUrl1 = imagePath1.replace(basePath, '');
             
 
 
@@ -46,13 +47,13 @@ const RecommandPage = () => {
    
             
             // 이미지 파일 주소를 웹 서버의 정적 파일 경로에 맞게 변경
-            const imageUrl2 = imagePath2.replace(/^C:\/Users\/leesuhyeon\/Desktop\/back\/Project_MVC/, '');
+            const imageUrl2 = imagePath2.replace(basePath, '');
             
             const imagePath3 = data.products[2].image
    
             
             // 이미지 파일 주소를 웹 서버의 정적 파일 경로에 맞게 변경
-            const imageUrl3 = imagePath3.replace(/^C:\/Users\/leesuhyeon\/Desktop\/back\/Project_MVC/, '');
+            const imageUrl3 = imagePath3.replace(basePath, '');
 
             setProducts1([data.products[0].name, data.products[0].price, imageUrl1]);
           setProducts2([data.products[1].name, data.products[1].price, imageUrl2]);

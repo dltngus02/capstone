@@ -9,7 +9,7 @@ import binascii
 
 
 class AutoBill(db.Model):
-    __tablename__ = '물건22'
+    __tablename__ = '물건_가격_테이블'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     name = db.Column(db.String(255))
@@ -37,7 +37,7 @@ class AutoBill(db.Model):
 
 
 class Quantity(db.Model):
-    __tablename__ = '주문_물건1'
+    __tablename__ = '물건_양_테이블'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     quantity = db.Column(db.Integer)
